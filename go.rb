@@ -81,7 +81,7 @@ class Game
   def printcard(x,y,type)
     goto(x,y)
      color(0,7,0,1)
-    print "╔═══════╗"
+    print "▛═══════╗"
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
