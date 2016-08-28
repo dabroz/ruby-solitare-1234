@@ -15,17 +15,11 @@ class Card
   def value
     @num % 13 + 2
   end
-  def suit
-    "♥♦♣♠"[color]
-  end
   def red?
     color < 2
   end
-  def pvalue
-    ((0..10).to_a + %w(J Q K A))[value]
-  end
   def to_s
-    "#{suit}#{pvalue}"
+    "♥♦♣♠"[color] + ((0..10).to_a + %w(J Q K A))[value]
   end
   def revealed?
     @revealed
