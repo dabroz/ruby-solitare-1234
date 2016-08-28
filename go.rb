@@ -108,6 +108,9 @@ class Game
   def gtc(x, y, fg, bg)
     print "\033[#{y};#{x}H\033[#{fg};#{bg}m"
   end
+  def gtcp(x, y, fg, bg, t)
+    gtc(x, y, fg, bg); print t
+  end
   def printcard(x,y,type)
     ss = '━━━'
     if type.is_a? Card
@@ -128,8 +131,7 @@ class Game
     gtc(x, y + q, cc, bg)
     print "┏#{ss}━━━━┓"
     (1..5).each do |q|
-      gtc(x, y + q, cc, bg)
-      print "┃       ┃"
+      gtcp x, y + q, cc, bg, "┃       ┃"
     end
     goto(x,y+6)
     print "┗━━━━━━━┛"
