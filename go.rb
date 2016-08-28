@@ -107,9 +107,9 @@ class Game
       printcard(11 + 4 + index * 3, 2, select)
     end
    # p#rint CNORMAL
-    color2(30,107)#false,true)
     goto(1,HEIGHT)
-    print "aa"
+    color2(30,107)#false,true)
+    print "Mode #{@mode}"
   end
   def printkey(x,y,k)
     goto(x+2,y)
