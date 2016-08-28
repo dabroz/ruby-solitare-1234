@@ -116,6 +116,7 @@ class Game
       if type.revealed?
         sel = type.selected?
         red = type.red?
+        card = true
       else
         type = ''
         card = false
@@ -129,14 +130,13 @@ class Game
     cc = 97 if red and sel 
 
     color2(cc,bg)
-    print "┏━━"
+    print "┏"
     if card && !visible
-      t = type.to_s
-      print t
+      print "#{type}"
     else
       print "━━━"
     end
-    print "━━┓"
+    print "━━━━┓"
     (1..5).each do |q|
       goto(x,y+q)
       if type == '' || type == nil
