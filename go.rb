@@ -187,7 +187,7 @@ class Game
   end
   def move_to(target_stack)
     from_stack = @selected_stack
-    return if from_stack == target_stack
+    raise 'a' if from_stack == target_stack
     target_stack = @stacks[target_stack]
     from_stack = @stacks[from_stack]
     index = from_stack.index(selected_card)
