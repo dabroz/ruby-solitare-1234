@@ -99,7 +99,7 @@ class Game
       printcard(11 + 4 + index * 3, 2, select, true, index == @select.count - 1)
     end
     printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
-    printkey(4+11 + 3 * @select.count - 6, 1, 'w') if @mode == 'select' and @select.count > 0
+    printkey(4+11 + 3 * @select.count - 4, 1, 'w') if @mode == 'select' and @select.count > 0
     color2(30,107)
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
