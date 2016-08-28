@@ -110,7 +110,7 @@ class Game
     color2(30,bg)
     print "┏━━━━"
     if special
-      color2(30,106)
+      color2(30,103)
     end
     print "━━"
     color2(30,bg)
