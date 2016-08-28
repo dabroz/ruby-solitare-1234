@@ -67,4 +67,5 @@ end
 # ╔═╗ ╚╝ ░ ▒ ▓
 
 Game.new.render
-    getch
+STDIN.getc
+
