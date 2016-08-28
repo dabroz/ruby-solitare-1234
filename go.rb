@@ -72,7 +72,7 @@ class Game
     end
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card, cindex == stack.count-1)
+        printcard(index * 11 + 4, 10 + cindex, card)
       end
       printkey(index * 11 + 4, 10 + 15 + 5, index+1)
     end
@@ -82,7 +82,7 @@ class Game
     end
     printcard(4, 2, '') if (@cards.count+@grave.count) > 0
     @select.each_with_index do |select, index|
-      printcard(15 + index * 4, 2, select, true, index == @select.count - 1)
+      printcard(15 + index * 4, 2, select)
     end
     printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
     printkey(15 + 4 * @select.count - 3, 1, 'w') if @mode == 'select' and @select.count > 0
@@ -111,7 +111,7 @@ class Game
   def gtc(x, y, fg, bg)
     print "\033[#{y};#{x}H\033[#{fg};#{bg}m"
   end
-  def printcard(x,y,type,visible=true,visible2=true)
+  def printcard(x,y,type)
     ss = '━━━'
     if type.is_a? Card
       if type.revealed?
