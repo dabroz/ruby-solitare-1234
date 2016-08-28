@@ -254,6 +254,7 @@ class Game
       unselect
       @mode = 'select'
     elsif @mode == 'select' and key == 'r'
+      unselect
       @mode = 'reveal'
     elsif @mode == 'reveal' and key >= '1' and key <= '7'
       reveal(key.ord - '1'.ord)
