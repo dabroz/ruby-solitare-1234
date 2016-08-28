@@ -53,7 +53,7 @@ class Game
     #puts "stacks:"
     #@stacks.each do |s| puts "s:"; puts s end
   end
-  def render
+  def renderbg
     goto(1,1)
     color(0,2,0)
     (HEIGHT-1).times do
@@ -62,16 +62,26 @@ class Game
       end
     end
   end
+  def render
+    renderbg
+    print CNORMAL
+  end
   def goto(x,y)
     print "\033[#{x};#{y}H"
   end
   def color(fg,bg,bold)
     print "\033[" + (bold ? "1;" : "") + "3#{fg};4#{bg}m"
   end
+  def printcard(x,y,type)
+    goto(x,y)
+    print "╔════╗"
+    goto(x,y+6)
+    print "╚════╝"
+  end
 end
 
-# ╔═╗ ╚╝ ░ ▒ ▓
+# ╔═╗ ╚╝ ░ ▒ ▓ ║
 
 Game.new.render
 STDIN.getch
-print CNORMAL
+#print CNORMAL
