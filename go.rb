@@ -213,9 +213,13 @@ class Game
         return
       end
     end
-    raise 'ok'
+#    raise 'ok'
     target_stack += seq
     from_stack -= seq
+    print QCNORMAL
+    puts from_stack
+    puts target_stack
+    raise 'ok'
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
