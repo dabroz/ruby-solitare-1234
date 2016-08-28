@@ -129,6 +129,9 @@ class Game
     goto(x,y)
     bg = type ? 107 : 42
     bg = 106 if special
+
+    bg = 102 if type.is_a? Card and type.selected?
+
     color2(30,bg)
     print "┏━━━━"
     if special
@@ -169,6 +172,8 @@ class Game
     if key == '1'
       unselect
       @stacks[0].last.select
+    else
+      abort
     end
   end
 end
