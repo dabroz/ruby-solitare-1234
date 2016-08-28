@@ -99,7 +99,7 @@ class Game
       color(type.red? ? 1 : 0, 7, true, true)
 #      print type.pcolor
       print t
-     color(0,7,0,1)
+     color(0,7,false,true)
       #print CNORMAL
       print " " * n2
       print "┃"
