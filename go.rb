@@ -146,7 +146,7 @@ color2((bold ? 90 : 30) + fg, (bgbold ? 100 : 40) + bg)
         print "░░░░░░░"
       else
         print " " * n1
-        color2(91 : 30, 107)
+        color2(red ? 91 : 30, 107)
         print t
         color2(30,107)
         print " " * n2
