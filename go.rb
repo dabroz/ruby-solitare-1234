@@ -118,8 +118,8 @@ class Game
       print " | [ r ] to cancel"
     end
     print " | [ p ] to quit"
-    goto(WIDTH,HEIGHT)
     print QCNORMAL
+    goto(WIDTH,HEIGHT)
   end
   def printkey(x,y,k)
     goto(x+2,y)
