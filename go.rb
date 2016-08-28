@@ -105,11 +105,8 @@ class Game
   def color2(fg,bg)
     print "\033[#{fg};#{bg}m"
   end
-  def gtc(x, y, fg, bg)
-    print "\033[#{y};#{x}H\033[#{fg};#{bg}m"
-  end
-  def gtcp(x, y, fg, bg, t)
-    gtc(x, y, fg, bg); print t
+  def gtcp x, y, fg, bg, t = ''
+    print "\033[#{y};#{x}H\033[#{fg};#{bg}m#{t}"
   end
   def printcard(x,y,type)
     ss = '━━━'
@@ -128,7 +125,7 @@ class Game
     cc = red ? 91 : 30
     cc = 97 if red and sel
     q = 0
-    gtc(x, y + q, cc, bg)
+    gtcp x, y + q, cc, bg
     print "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, cc, bg, "┃       ┃"
