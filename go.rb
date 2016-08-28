@@ -67,7 +67,7 @@ class Game
     renderbg
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 10 + 4, 9 + cindex, card)
+        printcard(index * 12 + 4, 9 + cindex, card)
       end
     end
     print CNORMAL
@@ -80,12 +80,12 @@ class Game
   end
   def printcard(x,y,type)
     goto(x,y)
-    print "╔══════╗"
+    print "╔════════╗"
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
       t ='' unless q == 3
-      n = 6-t.length
+      n = 8-t.length
       n1 = (n/2).to_i
       n2 = n-n1
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
@@ -96,7 +96,7 @@ class Game
       print "║"
     end
     goto(x,y+6)
-    print "╚══════╝"
+    print "╚════════╝"
   end
 end
 
