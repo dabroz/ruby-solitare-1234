@@ -100,6 +100,9 @@ class Game
       n2 = n-n1
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "┃"
+      if type == nil
+        print "░░░░░░░"
+      else
       print " " * n1
       color(red ? 1 : 0, 7, red, true)
 #      print type.pcolor
@@ -107,6 +110,7 @@ class Game
      color(0,7,false,true)
       #print CNORMAL
       print " " * n2
+    end
       print "┃"
     end
     goto(x,y+6)
