@@ -138,7 +138,7 @@ class Game
       x = index * 11 + 37
       printcard(x, 2, target.last,%w(a b c d)[index])
     end
-    printcard(4, 2, '','q')
+    printcard(4, 2, '', 'q')
     @select.each_with_index do |select, index|
       printcard(15 + index * 4, 2, select,'w')
     end
