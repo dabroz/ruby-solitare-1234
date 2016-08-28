@@ -95,9 +95,7 @@ class Game
     print ' ' * 40
   end
   def printkey(x,y,k)
-    goto(x+2,y)
-    color2(30,107)
-    print "[ #{k} ]"
+    gtcp x + 2, y, 30, 107, "[ #{k} ]"
   end
   def goto(x,y)
     print "\033[#{y};#{x}H"
