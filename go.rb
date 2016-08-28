@@ -139,20 +139,13 @@ class Game
       if type == '' || type == nil
         print "┃░░░░░░░┃"
       else
-        print "┃"
-        t = type.to_s
-        t ='   ' unless q == 3
-        n1 = 2
-        n2 = 2
+        t = q == 3 ? type.to_s : '   '
         if !visible2 and q==3
-          print "\b"
-          n2 += n1+1
-          n1 = 0
+          print t
+
+        else
+          print "┃  #{t}  ┃"
         end
-        print " " * n1
-        print t
-        print " " * n2
-        print "┃"
       end
     end
     goto(x,y+6)
