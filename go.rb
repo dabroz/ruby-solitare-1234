@@ -46,10 +46,10 @@ class Game
       @select << @cards.shift
     end
     @target = [[],[],[],[]]
-    puts "cards"
-    puts @cards
-    puts "stacks:"
-    @stacks.each do |s| puts "s:"; puts s end
+    #puts "cards"
+    #puts @cards
+    #puts "stacks:"
+    #@stacks.each do |s| puts "s:"; puts s end
   end
   def render
     goto(1,1)
