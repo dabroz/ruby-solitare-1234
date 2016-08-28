@@ -76,8 +76,7 @@ class Game
     (1..5).each do |q|
       gtcp x, y + q, n
     end
-    gtcp x, y + 6, "┗━━━━━━━┛"
-    gtcp x, y + 6, "  [ #{key} ]"
+    gtcp x, y + 6, "┗━[ #{key} ]━┛"
   end
   def unselect
     @selected_stack = nil
