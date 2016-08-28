@@ -60,6 +60,7 @@ end
 
 class Game
   def initialize
+    @mode = 'select'
     @cards = (0...52).map {|n| Card.new(n) }
     @all = @cards.dup
     @cards.shuffle!(random: Random.new(GAMEID))
@@ -107,6 +108,8 @@ class Game
     end
    # p#rint CNORMAL
     color2(30,107)#false,true)
+    goto(1,HEIGHT)
+    print "aa"
   end
   def printkey(x,y,k)
     goto(x+2,y)
