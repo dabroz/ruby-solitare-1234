@@ -14,7 +14,7 @@ class Card
     @num % 13 + 1
   end
   def to_s
-    "#{color}#{value}"
+    "#{color}/#{value}"
   end
 end
 
