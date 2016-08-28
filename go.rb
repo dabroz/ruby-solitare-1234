@@ -222,7 +222,7 @@ class Game
     # puts target_stack
     # raise 'ok'
     @stacks.each_with_index do |stack,index|
-      puts "stack #{index}: #{stack}"
+      puts "stack #{index}: #{stack.map(&:to_s)}"
     end
     abort
   end
