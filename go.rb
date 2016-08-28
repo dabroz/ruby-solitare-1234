@@ -169,9 +169,9 @@ class Game
     @all.each(&:unselect)
   end
   def process(key)
-    if key == '1'
+    if key >= '1' and key <= '7'
       unselect
-      @stacks[0].last.select
+      @stacks[key - '1'].last.select
     else
       abort
     end
