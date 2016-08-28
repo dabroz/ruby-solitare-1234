@@ -225,9 +225,6 @@ class Game
     end
     @stacks.each do |stack| stack.last&.reveal end
   end
-  def won?
-    @target.flatten.count == 52
-  end
 end
 
 print "\e[?25l"
@@ -236,5 +233,4 @@ while true
   game.render
   key = STDIN.getch
   game.process(key)
-  abort("Win") if game.won?
 end
