@@ -29,7 +29,7 @@ end
 def select
 @oed = true
 end
-def unselect
+def e9
 @oed = false
 end
 def accept(child)
@@ -54,9 +54,9 @@ e2 x, y + q, n
 end
 e2 x, y + 6, "|_[ #{key} ]_|"
 end
-def unselect
+def e9
 @r = nil
-@u.each(&:unselect)
+@u.each(&:e9)
 end
 def q1
 @u.detect(&:selected?)
@@ -121,15 +121,15 @@ end
 e2 1, 39, " [ m ] #{@i ? 'move' : 'cancel'}#{' '*40}"
 key = STDIN.getch
 if @i and key >= '1' and key <= '7'
-prev = @r
-prevc = q1
-unselect
+h5 = @r
+h5c = q1
+e9
 @r = @t[key.ord - '1'.ord]
 x2 = @r.select(&:x2?)
 return if x2.count == 0
-if prevc and prev == @r
-previ = x2.index(prevc)
-x2[(previ+1) % x2.count].select
+if h5c and h5 == @r
+h5i = x2.index(h5c)
+x2[(h5i+1) % x2.count].select
 else
 x2.last.select
 end
@@ -139,17 +139,17 @@ elsif !@i and key == 'm'
 @i = true
 elsif !@i and key >= '1' and key <= '7'
 f1(@t[key.ord - '1'.ord])
-unselect
+e9
 @i = true
 elsif !@i and key >= 'a' and key <= 'd'
 q4(key.ord - 'a'.ord)
-unselect
+e9
 @i = true
 elsif @i and key == 'w'
-unselect
+e9
 @o.last&.select
 elsif @i and key == 'q'
-unselect
+e9
 @o.each do |card| @y << card end
 @o = []
 3.times do
