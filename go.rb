@@ -77,8 +77,9 @@ class Game
       printkey(index * 11 + 4, 10 + 15 + 5, index+1)
     end
     @target.each_with_index do |target, index|
-      printcard(11+index * 11 + 37-11, 2, target.last)
-      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) if @mode == 'move'
+      x = index * 11 + 37
+      printcard(x, 2, target.last)
+      printkey(x, 1, ('a'.ord + index).chr) if @mode == 'move'
     end
     printcard(4, 2, '') if (@cards.count+@grave.count) > 0
     @select.each_with_index do |select, index|
