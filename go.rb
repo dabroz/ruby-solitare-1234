@@ -178,12 +178,12 @@ class Game
       n2 = n-n1
       print "┃"
       if type == '' || type == nil
-        print "░░"
         if special and q==1
           color2(30,102)
         end
         print "░░"
         color2(30,bg)
+        print "░░"
         if special and q==1
           color2(30,103)
         end
