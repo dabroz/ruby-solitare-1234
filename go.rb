@@ -31,7 +31,7 @@ class Card
   def to_s
     "#{suit}#{pvalue}"
   end
-  def q
+  def revealed?
     @revealed
   end
   def reveal
@@ -130,7 +130,7 @@ class Game
     print "\033[#{fg};#{bg}m"
   end
   def printcard(x,y,type,visible=true,visible2=true)
-    if type.is_a? Card and !type.q
+    if type.is_a? Card and !type.revealed?
       type = ''
     end
     red = false
@@ -268,7 +268,7 @@ class Game
       unselect
       @selected_stack = key.ord - '1'.ord
       ss = @stacks[@selected_stack]
-      revealed = ss.select(&:q)
+      revealed = ss.select(&:revealed?)
       return if revealed.count == 0
       if prevc and prev == @selected_stack
         previ = revealed.index(prevc)
