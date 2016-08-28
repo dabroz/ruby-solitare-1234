@@ -92,11 +92,9 @@ class Game
     goto(1,HEIGHT-1)
     print "Mode: #{@mode}"
     if @mode == 'select'
-      print " | press key to select card"
       print " | [ r ] to switch to revealing cards"
       print " | [ m ] to move to another stack" if selected_card
     elsif @mode == 'move'
-      print " | press key to move card"
       print " | [ m ] to cancel"
     elsif @mode == 'reveal'
       print " | press key to reveal hidden card"
