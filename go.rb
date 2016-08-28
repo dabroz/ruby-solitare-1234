@@ -98,8 +98,8 @@ class Game
     @select.each_with_index do |select, index|
       printcard(11 + 4 + index * 3, 2, select)
     end
-    printkey(4, 1, 'q')
-    printkey(4+11 + 4 * @select.count - 6, 1, 'w')
+    printkey(4, 1, 'q') if (@cards.count+@grave.count) > 0
+    printkey(4+11 + 4 * @select.count - 6, 1, 'w') if @select.count > 0
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
