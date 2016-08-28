@@ -105,13 +105,11 @@ class Game
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
     goto(1,HEIGHT-1)
-    #color2(30,107)
     print "Mode: #{@mode}"
     if @mode == 'select'
       print " | press key to select card"
       print " | [ r ] to switch to revealing cards"
       print " | [ m ] to move to another stack" if selected_card
-      #   print "cards #{@cards.map(&:to_s)} grave #{@grave.map(&:to_s)}"
     elsif @mode == 'move'
       print " | press key to move card"
       print " | [ m ] to cancel"
@@ -121,8 +119,6 @@ class Game
     end
     print "C #{@cards.count} G #{@grave.count} S #{@select.count}"
     print " | [ p ] to quit"
-    #print QCNORMAL
-    #goto(WIDTH1,HEIGHT)
   end
   def printkey(x,y,k)
     goto(x+2,y)
