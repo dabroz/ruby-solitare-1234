@@ -102,7 +102,7 @@ class Game
   end
   def printkey(x,y,k)
     goto(x+2,y)
-    color2(40,107)
+    color2(30,107)
     print "[ #{k} ]"
   end
   def goto(x,y)
@@ -124,15 +124,15 @@ class Game
 
     bg = 105 if type.is_a? Card and type.selected?
 
-    color2(30,bg)
+      cc = red ? 91 : 30
+      cc = 97 if red and type.selected?
+    color2(cc,bg)
     print "┏━━"
     if !visible
       t = type.to_s
-      cc = red ? 91 : 30
-      cc = 97 if red and type.selected?
       color2(cc,bg)
       print t
-      color2(30,bg)
+      color2(cc,bg)
       print "━" * (3-t.length)
     else
       print "━━━"
@@ -140,7 +140,6 @@ class Game
     print "━━┓"
     (1..5).each do |q|
       goto(x,y+q)
-      color2(30,bg)
       t = type.to_s
       t ='' unless q == 3
       n = 7-t.length
@@ -156,13 +155,8 @@ class Game
           n1 = 0
         end
         print " " * n1
-        cc = red ? 91 : 30
-        cc = 97 if red and type.selected?
-        color2(cc, bg)
         print t
-        color2(30,bg)
         print " " * n2
-        color2(30,bg)
       end
       print "┃"
     end
