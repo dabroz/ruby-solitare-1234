@@ -108,18 +108,22 @@ class Game
   end
   def printcard(x,y,type)
     ss = '━━━'
-    if type.is_a? Card
-      if type.revealed?
-        sel = type.selected?
-        red = type.red?
-        ss = type        
-      else
-        type = ''
+    if type
+      bg = 107
+      if type.is_a? Card
+        if type.revealed?
+          sel = type.selected?
+          red = type.red?
+          ss = type
+        else
+          type = ''
+        end
+        bg = 106 if type == ''
+        bg = 105 if sel
       end
+    else
+      bg = 42
     end
-    bg = type ? 107 : 42
-    bg = 106 if type == ''
-    bg = 105 if sel 
     cc = red ? 91 : 30
     cc = 97 if red and sel
     gtcp x, y + 0, cc, bg, "┏#{ss}━━━━┓"
@@ -200,7 +204,7 @@ class Game
       else
         revealed.last.select
       end
-    elsif @mode and key == 'm'      
+    elsif @mode and key == 'm'
       @mode = false if selected_card
     elsif !@mode and key == 'm'
       @mode = true
