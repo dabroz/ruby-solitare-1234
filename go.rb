@@ -64,17 +64,17 @@ class Game
     print "\033[#{y};#{x}H#{t}"
   end
   def printcard(x,y,type,key)
-    ss = '---'
-    n = "|       |"
+    ss = '━━━'
+    n = "┃       ┃"
     if type.is_a? Card and type.revealed?
       ss = type
-      n = "|xxxxxxx|" if type.selected?
+      n = "┃xxxxxxx┃" if type.selected?
     end
-    gtcp x, y + 0, "+#{ss}----+"
+    gtcp x, y + 0, "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, n
     end
-    gtcp x, y + 6, "+-[ #{key} ]-+"
+    gtcp x, y + 6, "┗━[ #{key} ]━┛"
   end
   def unselect
     @selected_stack = nil
