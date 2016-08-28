@@ -88,18 +88,18 @@ class Game
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card, cindex == stack.count-1)
       end
-      printkey(index * 11 + 4, 10 + 15, index+1)
+      printkey(index * 11 + 4, 10 + 15 + 5, index+1)
     end
     @target.each_with_index do |target, index|
       printcard(11+index * 11 + 37-11, 2, target.last)
-      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr)
+      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) unless @mode == 'reveal'
     end
     printcard(4, 2, '')
     @select.each_with_index do |select, index|
-      printcard(11 + 4 + index * 3, 2, select)
+      printcard(11 + 4 + index * 3, 2, select, true, index == @select.count - 1)
     end
-    printkey(4, 1, 'q') if (@cards.count+@grave.count) > 0
-    printkey(4+11 + 4 * @select.count - 6, 1, 'w') if @select.count > 0
+    printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
+    printkey(4+11 + 4 * @select.count - 6, 1, 'w') if @mode == 'select' and @select.count > 0
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
@@ -131,7 +131,7 @@ class Game
   def color2(fg,bg)
     print "\033[#{fg};#{bg}m"
   end
-  def printcard(x,y,type,visible=true)
+  def printcard(x,y,type,visible=true,visible2=true)
     if type.is_a? Card and !type.revealed?
       type = ''
     end
@@ -183,6 +183,10 @@ class Game
         color2(30,bg)
         print "░"
       else
+        if !visible2
+          n2 += n1
+          n1 = 0
+        end
         print " " * n1
 
         cc = red ? 91 : 30
