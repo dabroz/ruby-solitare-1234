@@ -129,7 +129,7 @@ class Game
     ts << selected_card
   end
   def select
-    gtcp 1, 1, "\033[2J\033[1;1H\e[?25l"
+    gtcp 1, 1, "\033[2J\033[1;1H"
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card, index+1)
