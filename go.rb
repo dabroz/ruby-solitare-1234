@@ -112,11 +112,6 @@ class Game
       end
     end
   end
-  def reveal(stack)
-    if @stacks[stack].count > 0
-      @stacks[stack].last.reveal
-    end
-  end
   def move_to_target(target)
     ts = @target[target]
     exp = 14
