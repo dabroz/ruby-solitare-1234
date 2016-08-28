@@ -233,13 +233,13 @@ class Game
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
-     # prev = @selected_stack
+      prev = @selected_stack
       prevc = selected_card
       unselect
       @selected_stack = key.ord - '1'.ord
       ss = @stacks[@selected_stack]
       revealed = ss.select(&:revealed?)
-      if prevc
+      if prevc and prev == @selected_stack
         previ = revealed.index(prevc)
         revealed[(previ+1) % previ.count].select
       else
