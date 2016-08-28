@@ -76,7 +76,7 @@ class Game
     print "\033[#{y};#{x}H"
   end
   def color(fg,bg,bold,bgbold=false)
-    print "\033[" + (bold ? "1;" : "") + "3#{fg};#{bgbold ? 10 : 4}#{bg}m"
+    print "\033[#{bold ? 9 : 3}#{fg};#{bgbold ? 10 : 4}#{bg}m"
   end
   def printcard(x,y,type)
     goto(x,y)
