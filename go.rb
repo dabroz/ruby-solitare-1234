@@ -78,7 +78,7 @@ class Game
       gtcp x, y + q, n
     end
     gtcp x, y + 6, "┗━━━━━━━┛"
-    gtcp x + 2, y+6, "[ #{key} ]"
+    gtcp x, y + 6, "  [ #{key} ]"
   end
   def unselect
     @selected_stack = nil
