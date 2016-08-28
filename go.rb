@@ -101,7 +101,7 @@ class Game
   def printkey(x,y,k)
     goto(x,y)
     color(0,7,true,true)
-    print "[░#{k}░]"
+    print "[ #{k} ]"
   end
   def goto(x,y)
     print "\033[#{y};#{x}H"
