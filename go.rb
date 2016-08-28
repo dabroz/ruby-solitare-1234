@@ -58,14 +58,17 @@ class Game
   def initialize
     @mode = 'select'
     @cards = (0...52).map {|n| Card.new(n) }
+
+    nn= [2] + (0..1).to_a + (3...52).to_a
+    @cards = nn.map {|n| Card.new(n) }
+    
     @all = @cards.dup
     @grave = []
-   # @cards.reverse!
    # @cards.shuffle!(random: Random.new(GAMEID))
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
       n.times do
-        @stacks[n - 1] << @cards.pop#shift
+        @stacks[n - 1] << @cards.shift
       end
     end
     @stacks.each do |s| s.last.reveal end
