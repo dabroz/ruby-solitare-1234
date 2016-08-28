@@ -94,7 +94,7 @@ class Game
       n1 = (n/2).to_i
       n2 = n-n1
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
-      print "║"
+      print "┃"
       print " " * n1
       color(type.red? ? 1 : 0, 7, true, true)
 #      print type.pcolor
@@ -102,10 +102,10 @@ class Game
      color(0,7,0,1)
       #print CNORMAL
       print " " * n2
-      print "║"
+      print "┃"
     end
     goto(x,y+6)
-    print "╚═══════╝"
+    print "┗━━━━━━━┛"
   end
 end
 
