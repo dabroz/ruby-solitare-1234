@@ -45,7 +45,7 @@ class Game
     puts "cards"
     puts @cards
     puts "stacks:"
-    puts @stacks
+    @stacks.each do |s| puts "s:"; puts s end
   end
 end
 
