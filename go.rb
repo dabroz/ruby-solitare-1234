@@ -80,6 +80,18 @@ class Game
   def printcard(x,y,type)
     goto(x,y)
     print "╔══════╗"
+    (1..5).each do |q|
+      goto(x,y+q)
+      t = type.to_s
+      n = t.length
+      n1 = (n/2).to_i
+      n2 = n-n1
+      print "║"
+      print " " * n1
+      print t
+      print " " * n2
+      print "║"
+    end
     goto(x,y+6)
     print "╚══════╝"
   end
