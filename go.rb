@@ -108,6 +108,8 @@ class Game
     end
    # p#rint CNORMAL
     goto(1,HEIGHT)
+    print " "*WIDTH
+    goto(1,HEIGHT)
     color2(30,107)#false,true)
     print "Mode #{@mode}"
   end
