@@ -1,5 +1,5 @@
-WIDTH = `tput lines`
-HEIGHT = `tput cols`
+WIDTH = `tput cols`
+HEIGHT = `tput lines`
 CARDS = "♠♥♦♣"
 GAMEID = ARGV[0] || rand(2**16)
 
