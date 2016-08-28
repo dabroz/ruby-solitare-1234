@@ -218,6 +218,7 @@ class Game
     from_stack -= seq
     print QCNORMAL
     puts from_stack
+    puts "->"
     puts target_stack
     raise 'ok'
   end
