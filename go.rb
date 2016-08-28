@@ -103,7 +103,28 @@ else
 end
 ts << selected_card
 end
-def select
+
+@mode = true
+@cards = (0...52).map {|n| Card.new(n) }
+@all = @cards.dup
+@grave = []
+@cards.shuffle!
+@stacks = []
+(1..7).each do |n|
+@stacks << []
+n.times do
+@stacks[n - 1] << @cards.shift
+end
+end
+@stacks.each do |s| s.last.reveal end
+@select = []
+@cards.each(&:reveal)
+3.times do
+@select << @cards.shift
+end
+
+@target = [[],[],[],[]]
+while true
 gtcp 1, 1, "\033[2J\033[1;1H"
 @stacks.each_with_index do |stack, index|
 stack.each_with_index do |card, cindex|
@@ -163,25 +184,3 @@ end
 end
 @stacks.each do |stack| stack.last&.reveal end
 end
-
-@mode = true
-@cards = (0...52).map {|n| Card.new(n) }
-@all = @cards.dup
-@grave = []
-@cards.shuffle!
-@stacks = []
-(1..7).each do |n|
-@stacks << []
-n.times do
-@stacks[n - 1] << @cards.shift
-end
-end
-@stacks.each do |s| s.last.reveal end
-@select = []
-@cards.each(&:reveal)
-3.times do
-@select << @cards.shift
-end
-
-@target = [[],[],[],[]]
-select while true
