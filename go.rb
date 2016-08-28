@@ -218,7 +218,7 @@ class Game
     end
     last_target = target_stack.last
     if last_target == nil
-      print "TODO"; abort
+      
     else
       return if !last_target.accept(seq.first)
     end
@@ -312,6 +312,7 @@ class Game
       unselect
       @mode = 'select'
     elsif key == 'p'
+      print ' '
       exit(1)
     end
   end
@@ -328,7 +329,7 @@ while true
   game.process(key)
   if game.won?
     print QCNORMAL
-    puts "You won!"
+    puts " You won!"
     exit(0)
   end
 end
