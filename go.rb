@@ -270,6 +270,10 @@ class Game
     elsif @mode == 'select' and key == 'r'
       unselect
       @mode = 'reveal'
+    elsif @mode == 'select' and key == 'q'
+      @select.each do |card| @cards << card end
+      3.times do @select << @cards.shift end
+      @mode = 'select'
     elsif @mode == 'reveal' and key >= '1' and key <= '7'
       reveal(key.ord - '1'.ord)
       unselect
