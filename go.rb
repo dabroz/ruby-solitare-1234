@@ -315,6 +315,9 @@ class Game
       exit(1)
     end
   end
+  def won?
+    @stacks.flatten.count == 0 and @cards.count == 0 and @grave.count == 0
+  end
 end
 
 print "\e[?25l"
@@ -327,4 +330,5 @@ while true
     print QCNORMAL
     puts "You won!"
     exit(0)
+  end
 end
