@@ -2,12 +2,7 @@ require 'io/console'
 
 WIDTH = `tput cols`.to_i
 HEIGHT = `tput lines`.to_i
-CARDS = "♥♦♣♠"
 GAMEID = (ARGV[0] || rand(2**16)).to_i
-
-#CRED = "\033[1;31m"
-#CBLACK = "\033[1;30m"
-#CNORMAL = "\033[0m\n"
 
 QCNORMAL = "\033[0m\n"
 
@@ -23,16 +18,12 @@ class Card
     @num % 13 + 2
   end
   def suit
-    CARDS[color]
+    "♥♦♣♠"[color]
   end
   def red?
     color < 2
   end
-  #def pcolor
-  #  red? ? CRED : CBLACK
-  #end
   def pvalue
-    #return '⑽' if value == 10
     return 'J' if value == 11
     return 'Q' if value == 12
     return 'K' if value == 13
@@ -41,7 +32,6 @@ class Card
   end
   def to_s
     "#{suit}#{pvalue}"
-    #pcolor + "#{suit}#{value}" + CNORMAL
   end
   def revealed?
     @revealed
@@ -83,18 +73,12 @@ class Game
       @select << @cards.shift
     end
     @target = [[],[],[],[]]
-    #puts "cards"
-    #puts @cards
-    #puts "stacks:"
-    #@stacks.each do |s| puts "s:"; puts s end
   end
   def renderbg
     goto(1,1)
     color2(90,42)
-    (HEIGHT-1).times do
-      WIDTH.times do
+    (WIDTH * (HEIGHT-1)).times do
         print ' '
-      end
     end
   end
   def render
@@ -113,11 +97,12 @@ class Game
     @select.each_with_index do |select, index|
       printcard(11 + 4 + index * 3, 2, select)
     end
-    # p#rint CNORMAL
+      printkey(4, 1, 'q')
+      printkey(4+11, 1, 'w')
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
-    color2(30,107)#false,true)
+    color2(30,107)
     print "Mode: #{@mode}"
     if @mode == 'select'
       print " | press key to select card"
@@ -224,15 +209,7 @@ class Game
     if last_target == nil
       print "TODO"; abort
     else
-      if !last_target.accept(seq.first)
-        #print QCNORMAL
-        #puts "last = #{last_target}"
-        ##puts "next = #{seq.first}"
-        #a#bort
-        #  @mode = 'select'
-        #  unselect
-        return
-      end
+      return if !last_target.accept(seq.first)
     end
     seq.each do |card|
       target_stack << card
@@ -303,8 +280,6 @@ class Game
   end
 end
 
-# ╔═╗ ╚╝ ░ ▒ ▓ ║
-#CNORMAL = "\033[0m\n"
 print "\e[?25l"
 game = Game.new
 while true
