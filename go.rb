@@ -238,7 +238,7 @@ class Game
       unselect
       @selected_stack = key.ord - '1'.ord
       ss = @stacks[@selected_stack]
-      revealed = ss.select(&:reveled?)
+      revealed = ss.select(&:revealed?)
       if prevc
         previ = revealed.index(prevc)
         revealed[(previ+1) % previ.count].select
