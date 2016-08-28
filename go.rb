@@ -92,19 +92,14 @@ class Game
   end
   def printcard(x,y,type)
     ss = '━━━'
-    if type
-      if type.is_a? Card
-        if type.revealed?
-          sel = type.selected?
-          ss = type
-        else
-          type = ''
-        end
-      end
+    n = "┃       ┃"
+    if type.is_a? Card and type.revealed?
+      ss = type
+      n = "┃xxxxxxx┃" if type.selected?
     end
     gtcp x, y + 0, "┏#{ss}━━━━┓"
     (1..5).each do |q|
-      gtcp x, y + q, sel ? "┃xxxxxxx┃" : "┃       ┃"
+      gtcp x, y + q, n
     end
     gtcp x, y + 6, "┗━━━━━━━┛"
   end
