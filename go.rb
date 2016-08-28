@@ -298,7 +298,9 @@ class Game
       @mode = 'reveal'
     elsif @mode == 'select' and key == 'w'
       unselect
-      @select.last.select
+      if @select.count > 0
+        @select.last.select
+      end
     elsif @mode == 'select' and key == 'q'
       unselect
       @select.each do |card| @grave << card end
