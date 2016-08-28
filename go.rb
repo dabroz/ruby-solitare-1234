@@ -4,7 +4,6 @@ WIDTH = `tput cols`.to_i
 GAMEID = (ARGV[0] || rand(2**16)).to_i
 
 class Card
-  attr_accessor :selected, :revealed
   def initialize(num)
     @num = num
     @revealed = false
