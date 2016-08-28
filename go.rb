@@ -123,12 +123,12 @@ class Game
     bg = 106 if type == ''
     bg = 105 if sel 
     cc = red ? 91 : 30
-    cc = 97 if red and sel 
-
-    gtc(x, y, cc, bg)
+    cc = 97 if red and sel
+    q = 0
+    gtc(x, y + q, cc, bg)
     print "┏#{ss}━━━━┓"
     (1..5).each do |q|
-      goto(x, y + q)
+      gtc(x, y + q, cc, bg)
       print "┃       ┃"
     end
     goto(x,y+6)
