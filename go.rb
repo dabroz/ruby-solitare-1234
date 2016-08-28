@@ -29,8 +29,15 @@ class Card
   def pcolor
     red? ? CRED : CBLACK
   end
+  def pvalue
+    return 'J' if value == 11
+    return 'Q' if value == 12
+    return 'K' if value == 13
+    return 'A' if value == 14
+    value
+  end
   def to_s
-    "#{suit}#{value}"
+    "#{suit}#{pvalue}"
     #pcolor + "#{suit}#{value}" + CNORMAL
   end
   def revealed?
