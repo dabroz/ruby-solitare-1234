@@ -38,10 +38,14 @@ class Game
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
       n.times do
-        c = @cards.shift
-        @stacks[n - 1] << c
+        @stacks[n - 1] << @cards.shift
       end
     end
+    @select = []
+    3.times do
+      @select << @cards.shift
+    end
+    @target = [[],[],[],[]]
     puts "cards"
     puts @cards
     puts "stacks:"
