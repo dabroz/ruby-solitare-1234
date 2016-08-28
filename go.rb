@@ -122,9 +122,7 @@ class Game
     goto(x,y)
     bg = type ? 107 : 42
     bg = 106 if special
-
     bg = 105 if card and type.selected?
-
     cc = red ? 91 : 30
     cc = 97 if red and type.selected?
     color2(cc,bg)
@@ -132,7 +130,6 @@ class Game
     if card && !visible
       t = type.to_s
       print t
-      print "━" * (3-t.length)
     else
       print "━━━"
     end
