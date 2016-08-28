@@ -101,7 +101,7 @@ class Game
     renderbg
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card)
+        printcard(index * 11 + 4, 10 + cindex, card, cindex == stack.count-1)
       end
       printkey(index * 11 + 4, 10 + 15, index+1)
     end
@@ -144,13 +144,15 @@ class Game
     bg = 105 if type.is_a? Card and type.selected?
 
     color2(30,bg)
-    print "┏━━━━"
-    if special
-    #  color2(30,103)
+    print "┏━━"
+    if !visible
+      t = type.to_s
+      print t
+      print "━" * (3-t.length)
+    else
+      print "━━━"
     end
-    print "━━"
-   # color2(30,bg)
-    print "━┓"
+    print "━━┓"
     (1..5).each do |q|
       goto(x,y+q)
       bg = 104 if special and q == 3
@@ -164,9 +166,9 @@ class Game
       print "┃"
       if type == '' || type == nil
         print "░░░░"
-    if special and q==1
-      color2(30,103)
-    end
+        if special and q==1
+          color2(30,103)
+        end
         print "░░"
         color2(30,bg)
         print "░"
