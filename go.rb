@@ -61,10 +61,10 @@ class Game
   end
   def goto(x,y)
     print "\033[#{x};#{y}H"
-    getc
   end
 end
 
 # ╔═╗ ╚╝ ░ ▒ ▓
 
 Game.new.render
+    getch
