@@ -115,10 +115,10 @@ class Game
       if type.is_a? Card
         if type.revealed?
           sel = type.selected?
-          red = type.red?
           ss = type
-          cc = 91 if red
-          cc = 97 if red and sel
+          if type.red?
+            cc = sel ? 97 : 91
+          end
           bg = 105 if sel
         else
           type = ''
