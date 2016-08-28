@@ -4,8 +4,6 @@ WIDTH = `tput cols`.to_i
 HEIGHT = `tput lines`.to_i
 GAMEID = (ARGV[0] || rand(2**16)).to_i
 
-QCNORMAL = "\033[0m\n"
-
 class Card
   def initialize(num)
     @num = num
@@ -330,15 +328,13 @@ class Game
 end
 
 print "\e[?25l"
-at_exit do print "\e[?25h";print QCNORMAL end
 game = Game.new
 while true
   game.render
   key = STDIN.getch
   game.process(key)
   if game.won?
-    print QCNORMAL
-    puts " You won!"
+    puts "\033[0m\n You won!"
     exit(0)
   end
 end
