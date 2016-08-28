@@ -81,11 +81,15 @@ class Game
   def color(fg,bg,bold,bgbold=false)
     print "\033[#{bold ? 9 : 3}#{fg};#{bgbold ? 10 : 4}#{bg}m"
   end
+  def color2(fg,bg)
+    print "\033[#{fg};#{bg}m"
+  end
   def printcard(x,y,type)
     red = false
     red = type.red? if type.is_a? Card
     goto(x,y)
-     color(0,7,false,true)
+    bg = type ? 107 : 2
+    color2(0,bg)
     print "┏"
    # color(7,0,true,false)
     print "━━━━━━━"
