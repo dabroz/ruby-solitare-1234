@@ -240,7 +240,9 @@ class Game
     end
   end
   def reveal(stack)
-    @stacks[stack].last.reveal
+    if @stack[stack].count > 0
+      @stacks[stack].last.reveal
+    end
   end
   def move_to_target(target)
     ts = @target[target]
