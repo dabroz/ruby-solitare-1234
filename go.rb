@@ -48,8 +48,9 @@ class Game
     @all = @cards.dup
     @grave = []
     @cards.shuffle!(random: Random.new(GAMEID))
-    @stacks = [[],[],[],[],[],[],[]]
+    @stacks = []
     (1..7).each do |n|
+      @stacks << []
       n.times do
         @stacks[n - 1] << @cards.shift
       end
