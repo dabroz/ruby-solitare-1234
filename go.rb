@@ -75,8 +75,8 @@ class Game
   def goto(x,y)
     print "\033[#{y};#{x}H"
   end
-  def color(fg,bg,bold)
-    print "\033[" + (bold ? "1;" : "") + "3#{fg};4#{bg}m"
+  def color(fg,bg,bold,bgbold=false)
+    print "\033[" + (bold ? "1;" : "") + "3#{fg};#{bgbold ? 9 : 3}#{bg}m"
   end
   def printcard(x,y,type)
     goto(x,y)
