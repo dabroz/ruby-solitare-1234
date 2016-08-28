@@ -41,7 +41,7 @@ end
 def gtcp x, y, t = ''
 print "\033[#{y};#{x}H#{t}"
 end
-def printcard(x,y,type,key)
+def q2(x,y,type,key)
 ss = '---'
 n = "|       |"
 if type.is_a? Card and type.revealed?
@@ -55,14 +55,14 @@ end
 gtcp x, y + 6, "|_[ #{key} ]_|"
 end
 def unselect
-@oed_stack = nil
+@r = nil
 @u.each(&:unselect)
 end
 def q1
 @u.detect(&:selected?)
 end
 def move_to(target)
-from_stack = @oed_stack
+from_stack = @r
 return if from_stack == target
 if from_stack
 seq = from_stack[from_stack.index(q1)..-1]
@@ -96,8 +96,8 @@ end
 return unless q1.color == ts.last.color
 end
 return unless q1.value == exp
-if @oed_stack
-@oed_stack.delete(q1)
+if @r
+@r.delete(q1)
 else
 @o.delete(q1)
 end
@@ -107,27 +107,27 @@ def select
 gtcp 1, 1, "\033[2J\033[1;1H"
 @t.each_with_index do |stack, index|
 stack.each_with_index do |card, cindex|
-printcard(index * 11 + 4, 10 + cindex, card, index+1)
+q2(index * 11 + 4, 10 + cindex, card, index+1)
 end
 end
 @target.each_with_index do |target, index|
 x = index * 11 + 37
-printcard(x, 2, target.last,%w(a b c d)[index])
+q2(x, 2, target.last,%w(a b c d)[index])
 end
-printcard(4, 2, '', 'q')
+q2(4, 2, '', 'q')
 @o.each_with_index do |select, index|
-printcard(15 + index * 4, 2, select,'w')
+q2(15 + index * 4, 2, select,'w')
 end
 gtcp 1, 39, " [ m ] #{@i ? 'move' : 'cancel'}#{' '*40}"
 key = STDIN.getch
 if @i and key >= '1' and key <= '7'
-prev = @oed_stack
+prev = @r
 prevc = q1
 unselect
-@oed_stack = @t[key.ord - '1'.ord]
-revealed = @oed_stack.select(&:revealed?)
+@r = @t[key.ord - '1'.ord]
+revealed = @r.select(&:revealed?)
 return if revealed.count == 0
-if prevc and prev == @oed_stack
+if prevc and prev == @r
 previ = revealed.index(prevc)
 revealed[(previ+1) % revealed.count].select
 else
