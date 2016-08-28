@@ -241,7 +241,7 @@ class Game
       revealed = ss.select(&:revealed?)
       if prevc and prev == @selected_stack
         previ = revealed.index(prevc)
-        revealed[(previ+1) % previ.count].select
+        revealed[(previ+1) % revealed.count].select
       else
         revealed.last.select  
       end
