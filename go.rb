@@ -91,6 +91,7 @@ class Game
     special = type == ''
     goto(x,y)
     bg = type ? 107 : 42
+    bg = 106 if special
     color2(30,bg)
     print "┏━━━━━━━┓"
     (1..5).each do |q|
@@ -101,7 +102,7 @@ class Game
       n1 = (n/2).to_i
       n2 = n-n1
       print "┃"
-      if type == nil
+      if type == '' || type == nil
         print "░░░░░░░"
       else
         print " " * n1
