@@ -323,16 +323,6 @@ class Game
       reveal(key.ord - '1'.ord)
       unselect
       @mode = 'select'
-    elsif key == 'j'
-      if       selected_card
-        @target[0] <<       selected_card
-        if @selected_stack
-          @stacks[@selected_stack].delete(selected_card)
-        else
-          @select.delete(selected_card)
-        end
-      end
-      unselect
     elsif key == 'p'
       print ' '
       exit(1)
