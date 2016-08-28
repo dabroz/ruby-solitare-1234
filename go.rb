@@ -149,8 +149,8 @@ class Game
       t = type.to_s
       color2(red ? 91 : 30,bg)
       print t
-      print "━" * (3-t.length)
       color2(30,bg)
+      print "━" * (3-t.length)
     else
       print "━━━"
     end
