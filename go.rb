@@ -91,10 +91,8 @@ class Game
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
     goto(1,HEIGHT-1)
-    if @mode == 'select'
-      print " [ m ] move" if selected_card
-    elsif @mode == 'move'
-      print " [ m ] cancel"
+    if selected_card
+      print " [ m ] " + ((@mode == 'select') ? 'move' : 'cancel')
     end
     print " [ p ] quit"
   end
