@@ -112,19 +112,22 @@ class Game
     print "\033[#{fg};#{bg}m"
   end
   def printcard(x,y,type,visible=true,visible2=true)
-    card = type.is_a? Card
-    if card and !type.revealed?
-      type = '';card=false
+    if type.is_a? Card
+      if type.revealed?
+        sel = type.selected?
+        red = type.red?
+      else
+        type = ''
+        card=false
+      end
     end
-    red = false
-    red = type.red? if card
-    special = type == ''
     goto(x,y)
     bg = type ? 107 : 42
-    bg = 106 if special
-    bg = 105 if card and type.selected?
+    bg = 106 if type == ''
+    bg = 105 if sel 
     cc = red ? 91 : 30
-    cc = 97 if red and type.selected?
+    cc = 97 if red and sel 
+
     color2(cc,bg)
     print "┏━━"
     if card && !visible
