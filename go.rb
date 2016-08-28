@@ -73,7 +73,7 @@ class Game
       ss = type
       n = "┃xxxxxxx┃" if type.selected?
     end
-    gtcp x, y, "┏#{ss}━━━━┓"
+    gtcp x, y + 0, "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, n
     end
