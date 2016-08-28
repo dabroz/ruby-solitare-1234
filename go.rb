@@ -112,7 +112,6 @@ class Game
       print " | press key to reveal hidden card"
       print " | [ r ] to cancel"
     end
-    print "C #{@cards.count} G #{@grave.count} S #{@select.count}"
     print " | [ p ] to quit"
   end
   def printkey(x,y,k)
