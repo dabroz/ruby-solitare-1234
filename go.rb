@@ -114,6 +114,7 @@ class Game
       print " | press key to move card"
       print " | [ m ] to cancel"
     end
+    print " | [ p ] to quit"
   end
   def printkey(x,y,k)
     goto(x+2,y)
@@ -304,7 +305,7 @@ class Game
       reveal(key.ord - '1'.ord)
       unselect
       @mode = 'select'
-    else
+    elsif key == 'p'
       abort
     end
   end
