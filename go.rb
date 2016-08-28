@@ -339,7 +339,7 @@ class Game
     end
   end
   def won?
-    @stacks.flatten.count == 0 and @cards.count == 0 and @grave.count == 0
+    @stacks.flatten.count == 0 and @cards.count == 0 and @grave.count == 0 and @select.count == 0
   end
 end
 
