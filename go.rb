@@ -94,7 +94,6 @@ class Game
     if selected_card
       print " [ m ] " + ((@mode == 'select') ? 'move' : 'cancel')
     end
-    print " [ p ] quit"
   end
   def printkey(x,y,k)
     goto(x+2,y)
@@ -240,9 +239,6 @@ class Game
         @grave = []
       end
       @mode = 'select'
-    elsif key == 'p'
-      print ' '
-      exit(1)
     end
     @stacks.each do |stack| stack.last&.reveal end
   end
