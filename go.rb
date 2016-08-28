@@ -161,7 +161,7 @@ if @o.size == 0 and @p.size == 0
 @y = []
 end
 end
-@t.each do |stack| stack.last&.reveal end
+@t.each do |n| n.last&.reveal end
 end
 @i = true
 @p = (0...52).map {|n| C.new(n) }
