@@ -65,11 +65,7 @@ class Game
     @target = [[],[],[],[]]
   end
   def render
-    goto(1,1)
-    color2(90,42)
-    (WIDTH * (HEIGHT-2)).times do
-      print ' '
-    end
+    gtcp 1, 1, 90, 42, ' ' * (WIDTH * (HEIGHT-2))
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card)
