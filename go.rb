@@ -1,3 +1,5 @@
+require 'io/console'
+
 WIDTH = `tput cols`.to_i
 HEIGHT = `tput lines`.to_i
 CARDS = "♥♦♣♠"
@@ -67,5 +69,4 @@ end
 # ╔═╗ ╚╝ ░ ▒ ▓
 
 Game.new.render
-STDIN.getc
-
+STDIN.getch
