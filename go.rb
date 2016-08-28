@@ -58,7 +58,7 @@ class Game
     color(0,2,0)
     (HEIGHT-1).times do
       WIDTH.times do
-        print 'y'
+        print '░'
       end
     end
   end
