@@ -90,17 +90,15 @@ class Game
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
     goto(1,HEIGHT-1)
-    print "Mode: #{@mode}"
     if @mode == 'select'
-      print " | [ r ] to switch to revealing cards"
-      print " | [ m ] to move to another stack" if selected_card
+      print " [ r ] switch to reveal"
+      print " [ m ] move" if selected_card
     elsif @mode == 'move'
-      print " | [ m ] to cancel"
+      print " [ m ] cancel"
     elsif @mode == 'reveal'
-      print " | press key to reveal hidden card"
-      print " | [ r ] to cancel"
+      print " [ r ] cancel"
     end
-    print " | [ p ] to quit"
+    print " [ p ] quit"
   end
   def printkey(x,y,k)
     goto(x+2,y)
