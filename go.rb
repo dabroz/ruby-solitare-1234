@@ -190,5 +190,5 @@ class Game
   end
 end
 
-game = Game.new
-game.select while true
+n = Game.new
+n.select while true
