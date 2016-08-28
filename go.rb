@@ -60,7 +60,7 @@ class Game
     @cards = (0...52).map {|n| Card.new(n) }
     @all = @cards.dup
     @grave = []
-    @cards.shuffle!(random: Random.new(GAMEID))
+   # @cards.shuffle!(random: Random.new(GAMEID))
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
       n.times do
