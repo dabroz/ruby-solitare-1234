@@ -136,15 +136,14 @@ class Game
     print "━━┓"
     (1..5).each do |q|
       goto(x,y+q)
-      t = type.to_s
-      t ='' unless q == 3
-      n = 7-t.length
-      n1 = (n/2).to_i
-      n2 = n-n1
-      print "┃"
       if type == '' || type == nil
-        print "░░░░░░░"
+        print "┃░░░░░░░┃"
       else
+        print "┃"
+        t = type.to_s
+        t ='   ' unless q == 3
+        n1 = 2
+        n2 = 2
         if !visible2 and q==3
           print "\b"
           n2 += n1+1
@@ -153,8 +152,8 @@ class Game
         print " " * n1
         print t
         print " " * n2
+        print "┃"
       end
-      print "┃"
     end
     goto(x,y+6)
     print "┗━━━━━━━┛"
