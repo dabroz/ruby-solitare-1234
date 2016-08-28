@@ -59,7 +59,7 @@ class Game
     @mode = 'select'
     @cards = (0...52).map {|n| Card.new(n) }
 
-    nn= [2] + (0..1).to_a + (3...52).to_a
+    nn= [12] + (0..11).to_a + (13...52).to_a
     @cards = nn.map {|n| Card.new(n) }
     
     @all = @cards.dup
