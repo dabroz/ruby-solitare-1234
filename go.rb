@@ -53,10 +53,10 @@ class Game
     end
     @stacks.each do |s| s.last.reveal end
     @select = []
+    @cards.each(&:reveal)
     3.times do
       @select << @cards.shift
     end
-    @cards.each(&:reveal)
     @target = [[],[],[],[]]
     #puts "cards"
     #puts @cards
