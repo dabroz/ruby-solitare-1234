@@ -86,7 +86,7 @@ class Game
       n = 8-t.length
       n1 = (n/2).to_i
       n2 = n-n1
-      print "t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
+      print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "║"
       print " " * n1
       print t
