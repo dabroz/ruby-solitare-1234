@@ -59,6 +59,7 @@ class Game
     @mode = 'select'
     @cards = (0...52).map {|n| Card.new(n) }
     @all = @cards.dup
+    @grave = []
     @cards.shuffle!(random: Random.new(GAMEID))
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
@@ -271,7 +272,7 @@ class Game
       unselect
       @mode = 'reveal'
     elsif @mode == 'select' and key == 'q'
-      @select.each do |card| @cards << card end
+      @select.each do |card| @grave << card end
       @select = []
       3.times do @select << @cards.shift end
       @mode = 'select'
