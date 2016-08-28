@@ -113,6 +113,9 @@ class Game
     elsif @mode == 'move'
       print " | press key to move card"
       print " | [ m ] to cancel"
+    elsif @mode == 'reveal'
+      print " | press key to reveal hidden card"
+      print " | [ r ] to cancel"
     end
     print " | [ p ] to quit"
   end
@@ -300,6 +303,8 @@ class Game
         @cards = @grave
         @grave = []
       end
+      @mode = 'select'
+    elsif @mode == 'reveal' and key == 'r'
       @mode = 'select'
     elsif @mode == 'reveal' and key >= '1' and key <= '7'
       reveal(key.ord - '1'.ord)
