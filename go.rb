@@ -65,7 +65,7 @@ class Game
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
       n.times do
-        @stacks[n - 1] << @cards.shift
+        @stacks[n - 1] << @cards.pop#shift
       end
     end
     @stacks.each do |s| s.last.reveal end
