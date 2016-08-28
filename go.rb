@@ -96,11 +96,11 @@ class Game
       printcard(11 + 4 + index * 3, 2, select)
     end
    # p#rint CNORMAL
-    color(0,7,false,true)
+    color2(30,107)#false,true)
   end
   def printkey(x,y,k)
     goto(x+2,y)
-    color(0,7,true,true)
+    color2(40,107)
     print "[ #{k} ]"
   end
   def goto(x,y)
