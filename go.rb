@@ -73,6 +73,7 @@ class Game
     @target.each_with_index do |target, index|
       printcard(index * 11 + 37, 2, target[0])
     end
+    printcard(4, 2, '')
     print CNORMAL
   end
   def goto(x,y)
@@ -87,14 +88,11 @@ class Game
   def printcard(x,y,type)
     red = false
     red = type.red? if type.is_a? Card
+    special = type == ''
     goto(x,y)
     bg = type ? 107 : 42
     color2(30,bg)
-    print "┏"
-   # color(7,0,true,false)
-    print "━━━━━━━"
-    # color(0,7,false,true)
-    print "┓"
+    print "┏━━━━━━━┓"
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
@@ -102,19 +100,16 @@ class Game
       n = 7-t.length
       n1 = (n/2).to_i
       n2 = n-n1
-     # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "┃"
       if type == nil
         print "░░░░░░░"
       else
-      print " " * n1
-      color(red ? 1 : 0, 7, red, true)
-#      print type.pcolor
-      print t
-     color(0,7,false,true)
-      #print CNORMAL
-      print " " * n2
-    end
+        print " " * n1
+        color(red ? 1 : 0, 7, red, true)
+        print t
+        color(0,7,false,true)
+        print " " * n2
+      end
       print "┃"
     end
     goto(x,y+6)
