@@ -86,7 +86,7 @@ class Game
       printcard(15 + index * 4, 2, select)
     end
     printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
-    printkey(15 + 4 * @select.count - 3, 1, 'w') if @mode == 'select' and @select.count > 0
+    printkey(12 + 4 * @select.count, 1, 'w') if @mode == 'select' and @select.count > 0
     color2(30,107)
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
