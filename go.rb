@@ -89,7 +89,7 @@ class Game
     red = type.red? if type.is_a? Card
     goto(x,y)
     bg = type ? 107 : 2
-    color2(0,bg)
+    color2(30,bg)
     print "┏"
    # color(7,0,true,false)
     print "━━━━━━━"
