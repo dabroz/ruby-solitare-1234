@@ -274,11 +274,11 @@ class Game
     elsif @mode == 'select' and key == 'q'
       @select.each do |card| @grave << card end
       @select = []
+      3.times do @select << @cards.shift end
       if @cards.size == 0
         @cards = @grave
         @grave = []
       end
-      3.times do @select << @cards.shift end
       @mode = 'select'
     elsif @mode == 'reveal' and key >= '1' and key <= '7'
       reveal(key.ord - '1'.ord)
