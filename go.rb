@@ -58,6 +58,10 @@ class Card
   def unselect
     @selected = false
   end
+  def accept(child)
+    return false unless red? ^ child.red?
+    child.value == value - 1
+  end
 end
 
 class Game
@@ -190,10 +194,21 @@ class Game
     #print "FROM #{target_stack}/ index = #{index}"
     #abort
     seq = from_stack[index..-1]
-    print QCNORMAL
-    print "FROM #{target_stack}/ index = #{index}"
-    print seq
-    abort
+    #print QCNORMAL
+    #print "FROM #{target_stack}/ index = #{index}"
+    #print seq
+    #abort
+    last_target = target_stack.last
+    if last_target == nil
+      print "TODO"; abort
+    else
+      if !last_target.accept(seq.first)
+        @mode = 'select'
+      end
+    end
+    target_stack += seq
+    from_stack -= seq
+    @mode = 'select'
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
