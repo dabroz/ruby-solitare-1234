@@ -214,8 +214,10 @@ class Game
       end
     end
     #    raise 'ok'
-    target_stack += seq
-    from_stack -= seq
+    seq.each do |card|
+    target_stack << card
+    from_stack.remove(card)
+  end
     print QCNORMAL
     # puts from_stack
     # puts "->"
