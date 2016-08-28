@@ -84,7 +84,7 @@ else
 end
 end
 end
-def move_to_target(target)
+def q4(target)
 ts = @target[target]
 exp = 14
 if ts.count > 0
@@ -103,7 +103,7 @@ else
 end
 ts << q1
 end
-def select
+def q7
 gtcp 1, 1, "\033[2J\033[1;1H"
 @t.each_with_index do |stack, index|
 stack.each_with_index do |card, cindex|
@@ -142,7 +142,7 @@ move_to(@t[key.ord - '1'.ord])
 unselect
 @i = true
 elsif !@i and key >= 'a' and key <= 'd'
-move_to_target(key.ord - 'a'.ord)
+q4(key.ord - 'a'.ord)
 unselect
 @i = true
 elsif @i and key == 'w'
@@ -163,7 +163,6 @@ end
 end
 @t.each do |stack| stack.last&.reveal end
 end
-
 @i = true
 @p = (0...52).map {|n| Card.new(n) }
 @u = @p.dup
@@ -184,4 +183,4 @@ end
 end
 
 @target = [[],[],[],[]]
-select while true
+q7 while true
