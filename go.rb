@@ -79,9 +79,9 @@ class Game
   end
   def printcard(x,y,type)
     goto(x,y)
-    print "╔════╗"
+    print "╔══════╗"
     goto(x,y+6)
-    print "╚════╝"
+    print "╚══════╝"
   end
 end
 
