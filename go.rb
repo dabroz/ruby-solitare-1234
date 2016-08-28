@@ -247,4 +247,5 @@ while true
   game.render
   key = STDIN.getch
   game.process(key)
+  game.render
 end
