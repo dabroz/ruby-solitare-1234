@@ -96,8 +96,8 @@ class Game
     print "┏━━━━━━━┓"
     (1..5).each do |q|
       goto(x,y+q)
-      bg = 104 if special and q == 2
-      bg = 103 if special and q == 3
+      bg = 104 if special and q == 3
+      bg = 103 if special and q == 4
       color2(30,bg)
       t = type.to_s
       t ='' unless q == 3
