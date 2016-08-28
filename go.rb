@@ -73,7 +73,7 @@ class Game
   end
   def renderbg
     goto(1,1)
-    color(0,2,0)
+    color2(90,42)
     (HEIGHT-1).times do
       WIDTH.times do
         print ' '
