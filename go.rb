@@ -92,7 +92,7 @@ class Game
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "║"
       print " " * n1
-      print t.pcolor
+      print type.pcolor
       print t
       print CNORMAL
       print " " * n2
