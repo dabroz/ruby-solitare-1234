@@ -156,8 +156,8 @@ class Game
     print "┏━━"
     if !visible
       t = type.to_s
-        cc = red ? 91 : 30
-        cc = 97 if red and type.selected?
+      cc = red ? 91 : 30
+      cc = 97 if red and type.selected?
       color2(cc,bg)
       print t
       color2(30,bg)
@@ -178,7 +178,7 @@ class Game
       n2 = n-n1
       print "┃"
       if type == '' || type == nil
-        if special 
+        if special
           color2(30,q < 3 ? 102 : 43)
         end
         print "░░"
@@ -242,6 +242,25 @@ class Game
   def reveal(stack)
     @stacks[stack].last.reveal
   end
+  def move_to_target(target)
+    ts = @target[target]
+    exp = 14
+    expc = nil
+    if ts.count > 0
+      if ts.last.value == 14
+        exp = 2
+      else
+        exp = ts.last.value + 1
+      end
+      expc = ts.last.color
+    end
+    if expc
+      return unless selected_card.color == expc
+    end
+    return unless selected_card.value == exp
+    @stacks[selected_stack].delete(selected_card)
+    ts << selected_card
+  end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
       prev = @selected_stack
@@ -254,16 +273,20 @@ class Game
         previ = revealed.index(prevc)
         revealed[(previ+1) % revealed.count].select
       else
-        revealed.last.select  
+        revealed.last.select
       end
     elsif @mode == 'select' and key == 'm'
       if selected_card
         @mode = 'move'
       end
     elsif @mode == 'move' and key == 'm'
-      @mode = 'select'      
+      @mode = 'select'
     elsif @mode == 'move' and key >= '1' and key <= '7'
       move_to(key.ord - '1'.ord)
+      unselect
+      @mode = 'select'
+    elsif @mode == 'move' and key >= 'a' and key <= 'd'
+      move_to_target(key.ord - 'a'.ord)
       unselect
       @mode = 'select'
     elsif @mode == 'select' and key == 'r'
