@@ -86,7 +86,7 @@ class Game
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card)
       end
-      printkey(index * 11 + 4, 10 + 20, index+1)
+      printkey(index * 11 + 4, 10 + 15, index+1)
     end
     @target.each_with_index do |target, index|
       printcard(11+index * 11 + 37-11, 2, target[0])
