@@ -42,7 +42,9 @@ class Game
         @stacks[n - 1] << c
       end
     end
+    puts "cards"
     puts @cards
+    puts "stacks:"
     puts @stacks
   end
 end
