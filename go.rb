@@ -118,7 +118,7 @@ class Game
         red = type.red?
       else
         type = ''
-        card=false
+        card = false
       end
     end
     goto(x,y)
