@@ -22,7 +22,7 @@ class Card
   end
   def red?
     color < 2
-  end 
+  end
   def pcolor
     red? ? CRED : CBLACK
   end
@@ -51,8 +51,19 @@ class Game
     puts "stacks:"
     @stacks.each do |s| puts "s:"; puts s end
   end
+  def render
+    goto(1,1)
+    (HEIGHT-1).times do
+      WIDTH.times do
+        print 'y'
+      end
+    end
+  end
+  def goto(x,y)
+    print "\033[#{x};#{y}H"
+  end
 end
 
 # ╔═╗ ╚╝ ░ ▒ ▓
 
-Game.new
+Game.new.render
