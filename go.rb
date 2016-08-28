@@ -118,6 +118,7 @@ class Game
       print " | [ r ] to cancel"
     end
     print " | [ p ] to quit"
+    goto(WIDTH,HEIGHT)
   end
   def printkey(x,y,k)
     goto(x+2,y)
@@ -311,7 +312,7 @@ class Game
       unselect
       @mode = 'select'
     elsif key == 'p'
-      abort
+      exit(1)
     end
   end
 end
@@ -322,5 +323,8 @@ while true
   game.render
   key = STDIN.getch
   game.process(key)
-  game.render
+  if game.won?
+    print QCNORMAL
+    puts "You won!"
+    exit(0)
 end
