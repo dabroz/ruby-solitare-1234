@@ -22,11 +22,7 @@ class Card
     color < 2
   end
   def pvalue
-    return 'J' if value == 11
-    return 'Q' if value == 12
-    return 'K' if value == 13
-    return 'A' if value == 14
-    value
+    (0..10 + %w(JQKA))[value]
   end
   def to_s
     "#{suit}#{pvalue}"
