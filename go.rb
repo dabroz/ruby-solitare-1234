@@ -79,7 +79,7 @@ class Game
     goto(1,1)
     color2(90,42)
     (WIDTH * (HEIGHT-1)).times do
-        print ' '
+      print ' '
     end
   end
   def render
@@ -98,8 +98,8 @@ class Game
     @select.each_with_index do |select, index|
       printcard(11 + 4 + index * 3, 2, select)
     end
-      printkey(4, 1, 'q')
-      printkey(4+11 + 4 * @select.count - 6, 1, 'w')
+    printkey(4, 1, 'q')
+    printkey(4+11 + 4 * @select.count - 6, 1, 'w')
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
@@ -275,7 +275,10 @@ class Game
     elsif @mode == 'select' and key == 'q'
       @select.each do |card| @grave << card end
       @select = []
-      3.times do @select << @cards.shift end
+      3.times do
+        c = @cards.shift
+        @select << c if c
+      end
       if @select.size == 0 and @cards.size == 0
         @cards = @grave
         @grave = []
