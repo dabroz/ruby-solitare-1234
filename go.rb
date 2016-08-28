@@ -80,7 +80,7 @@ class Game
   end
   def printcard(x,y,type)
     goto(x,y)
-      print CNORMAL
+     color(0,7,0)
     print "╔═══════╗"
     (1..5).each do |q|
       goto(x,y+q)
@@ -95,7 +95,7 @@ class Game
       color(type.red? ? 1 : 0, 7, true)
 #      print type.pcolor
       print t
-      print CNORMAL
+     color(0,7,0)
       #print CNORMAL
       print " " * n2
       print "║"
