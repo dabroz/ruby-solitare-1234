@@ -240,7 +240,7 @@ class Game
     end
   end
   def reveal(stack)
-    if @stack[stack].count > 0
+    if @stacks[stack].count > 0
       @stacks[stack].last.reveal
     end
   end
