@@ -14,7 +14,7 @@ class Card
   def value
     @num % 13 + 2
   end
-  def red?
+  def red
     color < 2
   end
   def to_s
@@ -36,7 +36,7 @@ class Card
     @selected = false
   end
   def accept(child)
-    return false unless red? ^ child.red?
+    return false unless red ^ child.red
     child.value == value - 1
   end
 end
