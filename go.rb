@@ -203,9 +203,7 @@ class Game
       @mode = true
     elsif @mode and key == 'w'
       unselect
-      if @select.count > 0
-        @select.last.select
-      end
+      @select.last&.select
     elsif @mode and key == 'q'
       unselect
       @select.each do |card| @grave << card end
