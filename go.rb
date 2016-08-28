@@ -127,8 +127,6 @@ class Game
   def move_to(target_stack)
     from_stack = @selected_stack
     return if from_stack == target_stack
-    target_stack = @stacks[target_stack]
-    from_stack = @stacks[from_stack] if from_stack
     if from_stack
       index = from_stack.index(selected_card)
       seq = from_stack[index..-1]
@@ -168,7 +166,7 @@ class Game
     end
     return unless selected_card.value == exp
     if @selected_stack
-      @stacks[@selected_stack].delete(selected_card)
+      @selected_stack.delete(selected_card)
     else
       @select.delete(selected_card)
     end
@@ -179,9 +177,8 @@ class Game
       prev = @selected_stack
       prevc = selected_card
       unselect
-      @selected_stack = key.ord - '1'.ord
-      ss = @stacks[@selected_stack]
-      revealed = ss.select(&:revealed?)
+      @selected_stack = @stacks[key.ord - '1'.ord]
+      revealed = @selected_stack.select(&:revealed?)
       return if revealed.count == 0
       if prevc and prev == @selected_stack
         previ = revealed.index(prevc)
@@ -194,7 +191,7 @@ class Game
     elsif !@mode and key == 'm'
       @mode = true
     elsif !@mode and key >= '1' and key <= '7'
-      move_to(key.ord - '1'.ord)
+      move_to(@stacks[key.ord - '1'.ord])
       unselect
       @mode = true
     elsif !@mode and key >= 'a' and key <= 'd'
