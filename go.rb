@@ -19,7 +19,7 @@ class Card
     color < 2
   end
   def to_s
-    "♥♦♣♠"[color] + ((0..10).to_a + %w(J Q K A))[value].to_s
+    "♥♦♣♠"[color] + (value!=10 ? ' ' : '') + ((0..10).to_a + %w(J Q K A))[value].to_s
   end
   def revealed?
     @revealed
@@ -150,8 +150,9 @@ class Game
       if type == '' || type == nil
         print "░░░░░░░"
       else
-        if !visible2
-          n2 += n1
+        if !visible2 and q==3
+          print "\b"
+          n2 += n1+1
           n1 = 0
         end
         print " " * n1
