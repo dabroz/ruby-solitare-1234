@@ -58,20 +58,20 @@ def unselect
 @selected_stack = nil
 @all.each(&:unselect)
 end
-def selected_card
+def q1
 @all.detect(&:selected?)
 end
 def move_to(target)
 from_stack = @selected_stack
 return if from_stack == target
 if from_stack
-seq = from_stack[from_stack.index(selected_card)..-1]
+seq = from_stack[from_stack.index(q1)..-1]
 else
-seq = [selected_card]
+seq = [q1]
 end
 last_target = target.last
 if last_target == nil
-return unless selected_card.value == 13
+return unless q1.value == 13
 else
 return if !last_target.accept(seq.first)
 end
@@ -93,15 +93,15 @@ exp = 2
 else
 exp = ts.last.value + 1
 end
-return unless selected_card.color == ts.last.color
+return unless q1.color == ts.last.color
 end
-return unless selected_card.value == exp
+return unless q1.value == exp
 if @selected_stack
-@selected_stack.delete(selected_card)
+@selected_stack.delete(q1)
 else
-@select.delete(selected_card)
+@select.delete(q1)
 end
-ts << selected_card
+ts << q1
 end
 def select
 gtcp 1, 1, "\033[2J\033[1;1H"
@@ -122,7 +122,7 @@ gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
 key = STDIN.getch
 if @mode and key >= '1' and key <= '7'
 prev = @selected_stack
-prevc = selected_card
+prevc = q1
 unselect
 @selected_stack = @stacks[key.ord - '1'.ord]
 revealed = @selected_stack.select(&:revealed?)
@@ -134,7 +134,7 @@ else
 revealed.last.select
 end
 elsif @mode and key == 'm'
-@mode = false if selected_card
+@mode = false if q1
 elsif !@mode and key == 'm'
 @mode = true
 elsif !@mode and key >= '1' and key <= '7'
