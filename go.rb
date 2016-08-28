@@ -62,23 +62,23 @@ def q1
 @u.detect(&:selected?)
 end
 def move_to(target)
-from_stack = @r
-return if from_stack == target
-if from_stack
-seq = from_stack[from_stack.index(q1)..-1]
+b8 = @r
+return if b8 == target
+if b8
+seq = b8[b8.index(q1)..-1]
 else
 seq = [q1]
 end
-last_target = target.last
-if last_target == nil
+b7 = target.last
+if b7 == nil
 return unless q1.value == 13
 else
-return if !last_target.accept(seq.first)
+return if !b7.accept(seq.first)
 end
 seq.each do |card|
 target << card
-if from_stack
-from_stack.delete(card)
+if b8
+b8.delete(card)
 else
 @o.delete(card)
 end
