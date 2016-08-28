@@ -82,6 +82,8 @@ class Game
     print "\033[#{bold ? 9 : 3}#{fg};#{bgbold ? 10 : 4}#{bg}m"
   end
   def printcard(x,y,type)
+    red = false
+    red = type.red? if type.is_a? Card
     goto(x,y)
      color(0,7,false,true)
     print "┏"
@@ -99,7 +101,7 @@ class Game
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "┃"
       print " " * n1
-      color(type.red? ? 1 : 0, 7, type.red?, true)
+      color(red ? 1 : 0, 7, red, true)
 #      print type.pcolor
       print t
      color(0,7,false,true)
