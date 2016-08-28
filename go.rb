@@ -89,11 +89,10 @@ class Game
     printkey(12 + 4 * @select.count, 1, 'w') if @mode and @select.count > 0
     color2(30,107)
     goto(1,HEIGHT-1)
-    print " "*WIDTH*2
-    goto(1,HEIGHT-1)
     if selected_card
-      print " [ m ] " + (@mode ? 'move' : 'cancel')
+      print " [ m ] #{@mode ? 'move' : 'cancel'}"
     end
+    print ' ' * 40
   end
   def printkey(x,y,k)
     goto(x+2,y)
