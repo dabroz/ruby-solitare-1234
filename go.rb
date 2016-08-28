@@ -30,7 +30,7 @@ class Card
     red? ? CRED : CBLACK
   end
   def pvalue
-    return '⑽' if value == 10
+    #return '⑽' if value == 10
     return 'J' if value == 11
     return 'Q' if value == 12
     return 'K' if value == 13
