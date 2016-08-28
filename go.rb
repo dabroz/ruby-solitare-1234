@@ -80,6 +80,7 @@ class Game
   end
   def printcard(x,y,type)
     goto(x,y)
+      print CNORMAL
     print "╔═══════╗"
     (1..5).each do |q|
       goto(x,y+q)
@@ -91,7 +92,9 @@ class Game
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "║"
       print " " * n1
+      print t.pcolor
       print t
+      print CNORMAL
       print " " * n2
       print "║"
     end
