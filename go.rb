@@ -24,13 +24,13 @@ def reveal
 @revealed = true
 end
 def selected?
-@selected
+@oed
 end
 def select
-@selected = true
+@oed = true
 end
 def unselect
-@selected = false
+@oed = false
 end
 def accept(child)
 return false unless red ^ child.red
@@ -55,14 +55,14 @@ end
 gtcp x, y + 6, "|_[ #{key} ]_|"
 end
 def unselect
-@selected_stack = nil
-@all.each(&:unselect)
+@oed_stack = nil
+@u.each(&:unselect)
 end
 def q1
-@all.detect(&:selected?)
+@u.detect(&:selected?)
 end
 def move_to(target)
-from_stack = @selected_stack
+from_stack = @oed_stack
 return if from_stack == target
 if from_stack
 seq = from_stack[from_stack.index(q1)..-1]
@@ -80,7 +80,7 @@ target << card
 if from_stack
 from_stack.delete(card)
 else
-@select.delete(card)
+@o.delete(card)
 end
 end
 end
@@ -96,16 +96,16 @@ end
 return unless q1.color == ts.last.color
 end
 return unless q1.value == exp
-if @selected_stack
-@selected_stack.delete(q1)
+if @oed_stack
+@oed_stack.delete(q1)
 else
-@select.delete(q1)
+@o.delete(q1)
 end
 ts << q1
 end
 def select
 gtcp 1, 1, "\033[2J\033[1;1H"
-@stacks.each_with_index do |stack, index|
+@t.each_with_index do |stack, index|
 stack.each_with_index do |card, cindex|
 printcard(index * 11 + 4, 10 + cindex, card, index+1)
 end
@@ -115,72 +115,72 @@ x = index * 11 + 37
 printcard(x, 2, target.last,%w(a b c d)[index])
 end
 printcard(4, 2, '', 'q')
-@select.each_with_index do |select, index|
+@o.each_with_index do |select, index|
 printcard(15 + index * 4, 2, select,'w')
 end
-gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
+gtcp 1, 39, " [ m ] #{@i ? 'move' : 'cancel'}#{' '*40}"
 key = STDIN.getch
-if @mode and key >= '1' and key <= '7'
-prev = @selected_stack
+if @i and key >= '1' and key <= '7'
+prev = @oed_stack
 prevc = q1
 unselect
-@selected_stack = @stacks[key.ord - '1'.ord]
-revealed = @selected_stack.select(&:revealed?)
+@oed_stack = @t[key.ord - '1'.ord]
+revealed = @oed_stack.select(&:revealed?)
 return if revealed.count == 0
-if prevc and prev == @selected_stack
+if prevc and prev == @oed_stack
 previ = revealed.index(prevc)
 revealed[(previ+1) % revealed.count].select
 else
 revealed.last.select
 end
-elsif @mode and key == 'm'
-@mode = false if q1
-elsif !@mode and key == 'm'
-@mode = true
-elsif !@mode and key >= '1' and key <= '7'
-move_to(@stacks[key.ord - '1'.ord])
+elsif @i and key == 'm'
+@i = false if q1
+elsif !@i and key == 'm'
+@i = true
+elsif !@i and key >= '1' and key <= '7'
+move_to(@t[key.ord - '1'.ord])
 unselect
-@mode = true
-elsif !@mode and key >= 'a' and key <= 'd'
+@i = true
+elsif !@i and key >= 'a' and key <= 'd'
 move_to_target(key.ord - 'a'.ord)
 unselect
-@mode = true
-elsif @mode and key == 'w'
+@i = true
+elsif @i and key == 'w'
 unselect
-@select.last&.select
-elsif @mode and key == 'q'
+@o.last&.select
+elsif @i and key == 'q'
 unselect
-@select.each do |card| @grave << card end
-@select = []
+@o.each do |card| @y << card end
+@o = []
 3.times do
-c = @cards.shift
-@select << c if c
+c = @p.shift
+@o << c if c
 end
-if @select.size == 0 and @cards.size == 0
-@cards = @grave
-@grave = []
+if @o.size == 0 and @p.size == 0
+@p = @y
+@y = []
 end
 end
-@stacks.each do |stack| stack.last&.reveal end
+@t.each do |stack| stack.last&.reveal end
 end
 
-@mode = true
-@cards = (0...52).map {|n| Card.new(n) }
-@all = @cards.dup
-@grave = []
-@cards.shuffle!
-@stacks = []
+@i = true
+@p = (0...52).map {|n| Card.new(n) }
+@u = @p.dup
+@y = []
+@p.shuffle!
+@t = []
 (1..7).each do |n|
-@stacks << []
+@t << []
 n.times do
-@stacks[n - 1] << @cards.shift
+@t[n - 1] << @p.shift
 end
 end
-@stacks.each do |s| s.last.reveal end
-@select = []
-@cards.each(&:reveal)
+@t.each do |s| s.last.reveal end
+@o = []
+@p.each(&:reveal)
 3.times do
-@select << @cards.shift
+@o << @p.shift
 end
 
 @target = [[],[],[],[]]
