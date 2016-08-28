@@ -96,7 +96,7 @@ class Game
      # print "t [#{t}] t #{t.length} n #{n} n1 #{n1} n2 #{n2}"
       print "┃"
       print " " * n1
-      color(type.red? ? 1 : 0, 7, true, true)
+      color(type.red? ? 1 : 0, 7, type.red?, true)
 #      print type.pcolor
       print t
      color(0,7,false,true)
