@@ -11,7 +11,7 @@ class Card
     (@num / 13).to_i
   end
   def value
-    @num % 13 + 1
+    @num % 13 + 2
   end
   def to_s
     "#{color}/#{value}"
