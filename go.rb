@@ -63,13 +63,10 @@ class Game
     end
     @target = [[],[],[],[]]
   end
-  def printkey(x,y,k)
-    gtcp x + 2, y, "[ #{k} ]"
-  end
   def gtcp x, y, t = ''
     print "\033[#{y};#{x}H#{t}"
   end
-  def printcard(x,y,type)
+  def printcard(x,y,type,key)
     ss = '━━━'
     n = "┃       ┃"
     if type.is_a? Card and type.revealed?
@@ -81,6 +78,7 @@ class Game
       gtcp x, y + q, n
     end
     gtcp x, y + 6, "┗━━━━━━━┛"
+    gtcp x + 2, y+6, "[ #{key} ]"
   end
   def unselect
     @selected_stack = nil
@@ -135,21 +133,17 @@ class Game
     gtcp 1, 1, ' ' * (WIDTH * 40)
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card)
+        printcard(index * 11 + 4, 10 + cindex, card, index+1)
       end
-      printkey(index * 11 + 4, 10 + 15 + 5, index+1)
     end
     @target.each_with_index do |target, index|
       x = index * 11 + 37
-      printcard(x, 2, target.last)
-      printkey(x, 1, %w(a b c d)[index])
+      printcard(x, 2, target.last,%w(a b c d)[index])
     end
-    printcard(4, 2, '')
+    printcard(4, 2, '','q')
     @select.each_with_index do |select, index|
-      printcard(15 + index * 4, 2, select)
+      printcard(15 + index * 4, 2, select,'w')
     end
-    printkey(4, 1, 'q')
-    printkey(12 + 4 * @select.count, 1, 'w')
     gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
     key = STDIN.getch
     if @mode and key >= '1' and key <= '7'
