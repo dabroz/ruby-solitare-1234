@@ -117,10 +117,8 @@ class Game
       if type.revealed?
         sel = type.selected?
         red = type.red?
-        card = true
         ss = type        
       else
-        card = false
         type = ''
       end
     end
