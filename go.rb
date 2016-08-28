@@ -108,7 +108,7 @@ class Game
   end
   def color(fg,bg,bold,bgbold=false)
 #    print "\033[#{bold ? 9 : 3}#{fg};#{bgbold ? 10 : 4}#{bg}m"
-color2(bold ? 90 : 30 + fg, bgbold ? 100 : 40 + bg)
+color2((bold ? 90 : 30) + fg, (bgbold ? 100 : 40) + bg)
   end
   def color2(fg,bg)
     print "\033[#{fg};#{bg}m"
