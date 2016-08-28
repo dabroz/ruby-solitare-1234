@@ -56,6 +56,7 @@ class Game
     3.times do
       @select << @cards.shift
     end
+    @cards.each(&:reveal)
     @target = [[],[],[],[]]
     #puts "cards"
     #puts @cards
