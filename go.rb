@@ -1,7 +1,11 @@
 WIDTH = `tput cols`
 HEIGHT = `tput lines`
-CARDS = "♠♥♦♣"
+CARDS = "♥♦♣♠"
 GAMEID = ARGV[0] || rand(2**16)
+
+CRED = "\033[1;31m"
+CBLACK = "\033[1;30m"
+CNORMAL = "\033[0m\n"
 
 class Card
   def initialize(num)
@@ -16,8 +20,14 @@ class Card
   def suit
     CARDS[color]
   end
+  def red?
+    color < 2
+  end 
+  def color
+    red? ? CRED : CBLACK
+  end
   def to_s
-    "#{suit}#{value}"
+    color + "#{suit}#{value}" + CNORMAL
   end
 end
 
