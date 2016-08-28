@@ -74,3 +74,4 @@ end
 
 Game.new.render
 STDIN.getch
+print CNORMAL
