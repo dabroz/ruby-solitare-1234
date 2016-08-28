@@ -330,6 +330,7 @@ class Game
           @select.delete(selected_card)
         end
       end
+      unselect
     elsif key == 'p'
       print ' '
       exit(1)
