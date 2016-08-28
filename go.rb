@@ -155,9 +155,9 @@ class Game
         print "░░░░░░░"
       else
         print " " * n1
-        color2(red ? 91 : 30, 107)
+        color2(red ? 91 : 30, bg)
         print t
-        color2(30,107)
+        color2(30,bg)
         print " " * n2
       end
       print "┃"
