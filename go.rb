@@ -196,6 +196,7 @@ class Game
     print "┗━━━━━━━┛"
   end
   def unselect
+    @selected_stack = nil
     @all.each(&:unselect)
   end
   def selected_card
@@ -232,9 +233,18 @@ class Game
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
+     # prev = @selected_stack
+      prevc = selected_card
       unselect
       @selected_stack = key.ord - '1'.ord
-      @stacks[@selected_stack].last.select
+      ss = @stacks[@selected_stack]
+      revealed = ss.select(&:reveled?)
+      if prevc
+        previ = revealed.index(prevc)
+        revealed[(previ+1) % previ.count].select
+      else
+        revealed.last.select  
+      end
     elsif @mode == 'select' and key == 'm'
       @mode = 'move'
     elsif @mode == 'move' and key >= '1' and key <= '7'
