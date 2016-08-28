@@ -1,7 +1,7 @@
 WIDTH = `tput rows`
 HEIGHT = `tput cols`
 CARDS = "♠♥♦♣"
-GAMEID = ARGV[1] || random
+GAMEID = ARGV[1] || rand
 
 class Card
 end
