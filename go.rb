@@ -152,7 +152,9 @@ class Game
     print "┏━━"
     if !visible
       t = type.to_s
-      color2(red ? 91 : 30,bg)
+        cc = red ? 91 : 30
+        cc = 97 if red and type.selected?
+      color2(cc,bg)
       print t
       color2(30,bg)
       print "━" * (3-t.length)
