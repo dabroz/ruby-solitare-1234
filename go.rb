@@ -84,7 +84,7 @@ class Game
       goto(x,y+q)
       t = type.to_s
       n = t.length
-      n1 = (n/2).to_i
+      n1 = ((6-n)/2).to_i
       n2 = n-n1
       print "║"
       print " " * n1
