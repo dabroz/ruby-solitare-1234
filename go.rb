@@ -118,6 +118,10 @@ class Game
     goto(1,HEIGHT)
     color2(30,107)#false,true)
     print "Mode #{@mode}"
+    if @mode == 'select'
+      print " | press key to select card"
+      print " | [ r ] to reveal card"
+    end
   end
   def printkey(x,y,k)
     goto(x+2,y)
