@@ -44,7 +44,7 @@ end
 
 class Game
   def initialize
-    @mode = 'select'
+    @mode = true
     @cards = (0...52).map {|n| Card.new(n) }
     @all = @cards.dup
     @grave = []
@@ -79,20 +79,20 @@ class Game
     @target.each_with_index do |target, index|
       x = index * 11 + 37
       printcard(x, 2, target.last)
-      printkey(x, 1, %w(a b c d)[index]) if @mode == 'move'
+      printkey(x, 1, %w(a b c d)[index]) if !@mode
     end
     printcard(4, 2, '') if (@cards.count+@grave.count) > 0
     @select.each_with_index do |select, index|
       printcard(15 + index * 4, 2, select)
     end
-    printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
-    printkey(12 + 4 * @select.count, 1, 'w') if @mode == 'select' and @select.count > 0
+    printkey(4, 1, 'q') if @mode and (@cards.count+@grave.count) > 0
+    printkey(12 + 4 * @select.count, 1, 'w') if @mode and @select.count > 0
     color2(30,107)
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
     goto(1,HEIGHT-1)
     if selected_card
-      print " [ m ] " + ((@mode == 'select') ? 'move' : 'cancel')
+      print " [ m ] " + (@mode ? 'move' : 'cancel')
     end
   end
   def printkey(x,y,k)
@@ -193,7 +193,7 @@ class Game
     ts << selected_card
   end
   def process(key)
-    if @mode == 'select' and key >= '1' and key <= '7'
+    if @mode and key >= '1' and key <= '7'
       prev = @selected_stack
       prevc = selected_card
       unselect
@@ -207,26 +207,24 @@ class Game
       else
         revealed.last.select
       end
-    elsif @mode == 'select' and key == 'm'
-      if selected_card
-        @mode = 'move'
-      end
-    elsif @mode == 'move' and key == 'm'
-      @mode = 'select'
-    elsif @mode == 'move' and key >= '1' and key <= '7'
+    elsif @mode and key == 'm'      
+      @mode = false if selected_card
+    elsif !@mode and key == 'm'
+      @mode = true
+    elsif !@mode and key >= '1' and key <= '7'
       move_to(key.ord - '1'.ord)
       unselect
-      @mode = 'select'
-    elsif @mode == 'move' and key >= 'a' and key <= 'd'
+      @mode = true
+    elsif !@mode and key >= 'a' and key <= 'd'
       move_to_target(key.ord - 'a'.ord)
       unselect
-      @mode = 'select'
-    elsif @mode == 'select' and key == 'w'
+      @mode = true
+    elsif @mode and key == 'w'
       unselect
       if @select.count > 0
         @select.last.select
       end
-    elsif @mode == 'select' and key == 'q'
+    elsif @mode and key == 'q'
       unselect
       @select.each do |card| @grave << card end
       @select = []
@@ -238,7 +236,6 @@ class Game
         @cards = @grave
         @grave = []
       end
-      @mode = 'select'
     end
     @stacks.each do |stack| stack.last&.reveal end
   end
