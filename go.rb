@@ -22,7 +22,7 @@ class Card
     color < 2
   end
   def pvalue
-    (0..10.to_a + %w(JQKA))[value]
+    ((0..10).to_a + %w(JQKA))[value]
   end
   def to_s
     "#{suit}#{pvalue}"
