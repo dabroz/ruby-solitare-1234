@@ -204,9 +204,13 @@ class Game
     from_stack = @selected_stack
     return if from_stack == target_stack
     target_stack = @stacks[target_stack]
-    from_stack = @stacks[from_stack]
-    index = from_stack.index(selected_card)
-    seq = from_stack[index..-1]
+    from_stack = @stacks[from_stack] if from_stack
+    if from_stack
+      index = from_stack.index(selected_card)
+      seq = from_stack[index..-1]
+    else
+      seq = [selected_card]
+    end
     last_target = target_stack.last
     if last_target == nil
       print "TODO"; abort
@@ -215,7 +219,11 @@ class Game
     end
     seq.each do |card|
       target_stack << card
-      from_stack.delete(card)
+      if from_stack
+        from_stack.delete(card)
+      else
+        @select.delete(card)
+      end
     end
   end
   def reveal(stack)
