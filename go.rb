@@ -73,13 +73,12 @@ class Game
       ss = type
       n = "┃xxxxxxx┃" if type.selected?
     end
-    gtcp x, y + 0, "┏#{ss}━━━━┓"
+    gtcp x, y, "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, n
     end
-    q = 6
-    gtcp x, y + q, "┗━━━━━━━┛"
-    gtcp x, y + q, "  [ #{key} ]"
+    gtcp x, y + 6, "┗━━━━━━━┛"
+    gtcp x, y + 6, "  [ #{key} ]"
   end
   def unselect
     @selected_stack = nil
