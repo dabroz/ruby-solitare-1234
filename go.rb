@@ -172,7 +172,7 @@ class Game
         color2(cc, bg)
         print t
         color2(30,bg)
-    if special and q==0
+    if special and q==1
       color2(30,103)
     end
         print " " * n2
