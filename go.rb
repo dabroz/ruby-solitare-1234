@@ -58,13 +58,9 @@ class Game
   def initialize
     @mode = 'select'
     @cards = (0...52).map {|n| Card.new(n) }
-
-    nn= [12] + (0..11).to_a + (13...52).to_a
-    @cards = nn.map {|n| Card.new(n) }
-    
     @all = @cards.dup
     @grave = []
-   # @cards.shuffle!(random: Random.new(GAMEID))
+    @cards.shuffle!(random: Random.new(GAMEID))
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
       n.times do
@@ -97,7 +93,7 @@ class Game
     end
     @target.each_with_index do |target, index|
       printcard(11+index * 11 + 37-11, 2, target.last)
-      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) if @mode == 'move' 
+      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) if @mode == 'move'
     end
     printcard(4, 2, '')
     @select.each_with_index do |select, index|
@@ -115,7 +111,7 @@ class Game
       print " | press key to select card"
       print " | [ r ] to switch to revealing cards"
       print " | [ m ] to move to another stack" if selected_card
-   #   print "cards #{@cards.map(&:to_s)} grave #{@grave.map(&:to_s)}"
+      #   print "cards #{@cards.map(&:to_s)} grave #{@grave.map(&:to_s)}"
     elsif @mode == 'move'
       print " | press key to move card"
       print " | [ m ] to cancel"
@@ -322,6 +318,15 @@ class Game
       reveal(key.ord - '1'.ord)
       unselect
       @mode = 'select'
+    elsif key == 'j'
+      if       selected_card
+        @target[0] <<       selected_card
+        if @selected_stack
+          @stacks[@selected_stack].delete(selected_card)
+        else
+          @select.delete(selected_card)
+        end
+      end
     elsif key == 'p'
       print ' '
       exit(1)
