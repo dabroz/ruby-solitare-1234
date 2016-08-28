@@ -64,6 +64,11 @@ class Game
   end
   def render
     renderbg
+    @stacks.each_with_index do |stack, index|
+      stack.each_with_index do |card, cindex|
+        printcard(index * 8 + 2, 9, card)
+      end
+    end
     print CNORMAL
   end
   def goto(x,y)
