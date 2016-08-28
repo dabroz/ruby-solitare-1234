@@ -55,6 +55,7 @@ class Game
   end
   def render
     goto(1,1)
+    color(0,2,0)
     (HEIGHT-1).times do
       WIDTH.times do
         print 'y'
@@ -63,6 +64,9 @@ class Game
   end
   def goto(x,y)
     print "\033[#{x};#{y}H"
+  end
+  def color(fg,bg,bold)
+    print "\033[" + (bold ? "1;" : "") + "3#{fg};4#{bg}m"
   end
 end
 
