@@ -114,8 +114,7 @@ class Game
     from_stack = @selected_stack
     return if from_stack == target_stack
     if from_stack
-      index = from_stack.index(selected_card)
-      seq = from_stack[index..-1]
+      seq = from_stack[from_stack.index(selected_card)..-1]
     else
       seq = [selected_card]
     end
