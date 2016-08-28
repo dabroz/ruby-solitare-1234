@@ -72,7 +72,7 @@ class Game
     print CNORMAL
   end
   def goto(x,y)
-    print "\033[#{x};#{y}H"
+    print "\033[#{y};#{x}H"
   end
   def color(fg,bg,bold)
     print "\033[" + (bold ? "1;" : "") + "3#{fg};4#{bg}m"
