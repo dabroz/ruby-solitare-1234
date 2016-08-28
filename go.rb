@@ -171,7 +171,7 @@ class Game
   def process(key)
     if key >= '1' and key <= '7'
       unselect
-      @stacks[key - '1'].last.select
+      @stacks[key.ord - '1'].last.select
     else
       abort
     end
