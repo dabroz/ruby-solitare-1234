@@ -1,7 +1,7 @@
 WIDTH = `tput cols`
 HEIGHT = `tput lines`
 CARDS = "♥♦♣♠"
-GAMEID = ARGV[0] || rand(2**16)
+GAMEID = (ARGV[0] || rand(2**16)).to_i
 
 CRED = "\033[1;31m"
 CBLACK = "\033[1;30m"
