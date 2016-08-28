@@ -101,7 +101,7 @@ class Game
     renderbg
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card, cindex == stack.count-1)
+        printcard(index * 11 + 4, 10 + cindex, card, cindex == stack.count-2)
       end
       printkey(index * 11 + 4, 10 + 15, index+1)
     end
