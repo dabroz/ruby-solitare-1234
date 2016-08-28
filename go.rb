@@ -166,7 +166,7 @@ class Game
       revealed = @selected_stack.select(&:revealed?)
       return if revealed.count == 0
       if prevc and prev == @selected_stack
-        previ = revealed.index(prevc)
+        previ = revealed.index(prevc) 
         revealed[(previ+1) % revealed.count].select
       else
         revealed.last.select
