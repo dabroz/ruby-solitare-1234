@@ -51,6 +51,7 @@ class Game
         @stacks[n - 1] << @cards.shift
       end
     end
+    @stacks.each do |s| s.last.reveal end
     @select = []
     3.times do
       @select << @cards.shift
