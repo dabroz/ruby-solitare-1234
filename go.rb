@@ -61,22 +61,22 @@ end
 def q1
 @u.detect(&:selected?)
 end
-def f1(target)
+def f1(e3)
 b8 = @r
-return if b8 == target
+return if b8 == e3
 if b8
 seq = b8[b8.index(q1)..-1]
 else
 seq = [q1]
 end
-b7 = target.last
+b7 = e3.last
 if b7 == nil
 return unless q1.value == 13
 else
 return if !b7.accept(seq.first)
 end
 seq.each do |card|
-target << card
+e3 << card
 if b8
 b8.delete(card)
 else
@@ -84,8 +84,8 @@ else
 end
 end
 end
-def q4(target)
-ts = @target[target]
+def q4(e3)
+ts = @e3[e3]
 exp = 14
 if ts.count > 0
 if ts.last.value == 14
@@ -110,9 +110,9 @@ stack.each_with_index do |card, cindex|
 q2(index * 11 + 4, 10 + cindex, card, index+1)
 end
 end
-@target.each_with_index do |target, index|
+@e3.each_with_index do |e3, index|
 x = index * 11 + 37
-q2(x, 2, target.last,%w(a b c d)[index])
+q2(x, 2, e3.last,%w(a b c d)[index])
 end
 q2(4, 2, '', 'q')
 @o.each_with_index do |select, index|
@@ -182,5 +182,5 @@ end
 @o << @p.shift
 end
 
-@target = [[],[],[],[]]
+@e3 = [[],[],[],[]]
 q7 while true
