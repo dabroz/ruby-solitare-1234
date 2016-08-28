@@ -108,6 +108,7 @@ class Game
   end
   def printcard(x,y,type)
     ss = '━━━'
+    cc = 30
     if type
       bg = 107
       if type.is_a? Card
@@ -115,6 +116,8 @@ class Game
           sel = type.selected?
           red = type.red?
           ss = type
+          cc = 91 if red
+          cc = 97 if red and sel
         else
           type = ''
         end
@@ -124,8 +127,6 @@ class Game
     else
       bg = 42
     end
-    cc = red ? 91 : 30
-    cc = 97 if red and sel
     gtcp x, y + 0, cc, bg, "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, cc, bg, "┃       ┃"
