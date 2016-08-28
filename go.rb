@@ -21,3 +21,5 @@ class Game
     puts @cards
   end
 end
+
+Game.new
