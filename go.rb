@@ -204,10 +204,13 @@ class Game
     else
       if !last_target.accept(seq.first)
         @mode = 'select'
+        unselect
+        return
       end
     end
     target_stack += seq
     from_stack -= seq
+    unselect
     @mode = 'select'
   end
   def process(key)
