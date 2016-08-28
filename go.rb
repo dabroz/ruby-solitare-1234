@@ -19,7 +19,7 @@ class Card
     color < 2
   end
   def to_s
-    "♥♦♣♠"[color] + (value!=10 ? ' ' : '1') + '01234567890JQKA'[value]
+    "#{'♥♦♣♠'[color]}#{value != 10 ? ' ' : '1'}#{'01234567890JQKA'[value]}"
   end
   def revealed?
     @revealed
