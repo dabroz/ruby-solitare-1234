@@ -213,6 +213,7 @@ class Game
         return
       end
     end
+    raise 'ok'
     target_stack += seq
     from_stack -= seq
   end
