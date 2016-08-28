@@ -182,10 +182,17 @@ class Game
     @all.detect(&:selected?)
   end
   def move_to(target_stack)
+    target_stack = @stacks[target_stack]
     from_stack = @selected_stack
-    index = @stacks[from_stack].index(selected_card)
+    from_stack = @stacks[from_stack]
+    index = from_stack.index(selected_card)
+    #print QCNORMAL
+    #print "FROM #{target_stack}/ index = #{index}"
+    #abort
+    seq = from_stack[index..-1]
     print QCNORMAL
     print "FROM #{target_stack}/ index = #{index}"
+    print seq
     abort
   end
   def process(key)
