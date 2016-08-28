@@ -109,7 +109,7 @@ class Game
       print " | press key to select card"
       print " | [ r ] to switch to revealing cards"
       print " | [ m ] to move to another stack" if selected_card
-      print "cards #{@cards.map(&:to_s)} grave #{@grave.map(&:to_s)}"
+   #   print "cards #{@cards.map(&:to_s)} grave #{@grave.map(&:to_s)}"
     elsif @mode == 'move'
       print " | press key to move card"
       print " | [ m ] to cancel"
@@ -276,7 +276,7 @@ class Game
       @select.each do |card| @grave << card end
       @select = []
       3.times do @select << @cards.shift end
-      if @cards.size == 0
+      if @select.size == 0 and @cards.size == 0
         @cards = @grave
         @grave = []
       end
