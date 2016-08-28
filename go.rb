@@ -91,12 +91,9 @@ class Game
     print " "*WIDTH*2
     goto(1,HEIGHT-1)
     if @mode == 'select'
-      print " [ r ] switch to reveal"
       print " [ m ] move" if selected_card
     elsif @mode == 'move'
       print " [ m ] cancel"
-    elsif @mode == 'reveal'
-      print " [ r ] cancel"
     end
     print " [ p ] quit"
   end
@@ -121,9 +118,10 @@ class Game
         sel = type.selected?
         red = type.red?
         card = true
-        ss = type
+        ss = type        
       else
         card = false
+        type = ''
       end
     end
     bg = type ? 107 : 42
@@ -227,9 +225,6 @@ class Game
       move_to_target(key.ord - 'a'.ord)
       unselect
       @mode = 'select'
-    elsif @mode == 'select' and key == 'r'
-      unselect
-      @mode = 'reveal'
     elsif @mode == 'select' and key == 'w'
       unselect
       if @select.count > 0
@@ -248,16 +243,11 @@ class Game
         @grave = []
       end
       @mode = 'select'
-    elsif @mode == 'reveal' and key == 'r'
-      @mode = 'select'
-    elsif @mode == 'reveal' and key >= '1' and key <= '7'
-      reveal(key.ord - '1'.ord)
-      unselect
-      @mode = 'select'
     elsif key == 'p'
       print ' '
       exit(1)
     end
+    @stacks.each do |stack| stack.last&.reveal end
   end
   def won?
     @target.flatten.count == 52
