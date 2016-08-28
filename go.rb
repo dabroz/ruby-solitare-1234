@@ -80,8 +80,10 @@ class Game
   end
   def printcard(x,y,type)
     goto(x,y)
-     color(0,7,0,1)
-    print "▛▄▄▄▄▄▄▄╗"
+     color(0,7,false,true)
+    print "▛"
+    color(7,0,false,true)
+    print "▄▄▄▄▄▄▄╗"
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
