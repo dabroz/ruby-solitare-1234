@@ -75,19 +75,15 @@ class Game
     @target.each_with_index do |target, index|
       x = index * 11 + 37
       printcard(x, 2, target.last)
-      printkey(x, 1, %w(a b c d)[index]) if !@mode
+      printkey(x, 1, %w(a b c d)[index])
     end
-    printcard(4, 2, '') if (@cards.count+@grave.count) > 0
+    printcard(4, 2, '')
     @select.each_with_index do |select, index|
       printcard(15 + index * 4, 2, select)
     end
-    printkey(4, 1, 'q') if @mode and (@cards.count+@grave.count) > 0
-    printkey(12 + 4 * @select.count, 1, 'w') if @mode and @select.count > 0
-    gtcp 1, HEIGHT - 1, 30, 107
-    if selected_card
-      print " [ m ] #{@mode ? 'move' : 'cancel'}"
-    end
-    print ' ' * 40
+    printkey(4, 1, 'q')
+    printkey(12 + 4 * @select.count, 1, 'w')
+    gtcp 1, HEIGHT - 1, 30, 107, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
   end
   def printkey(x,y,k)
     gtcp x + 2, y, 30, 107, "[ #{k} ]"
