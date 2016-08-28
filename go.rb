@@ -1,4 +1,5 @@
 require 'io/console'
+
 class Card
 def initialize(num)
 @num = num
@@ -36,6 +37,7 @@ return false unless red ^ child.red
 child.value == value - 1
 end
 end
+
 def gtcp x, y, t = ''
 print "\033[#{y};#{x}H#{t}"
 end
@@ -161,6 +163,7 @@ end
 end
 @stacks.each do |stack| stack.last&.reveal end
 end
+
 @mode = true
 @cards = (0...52).map {|n| Card.new(n) }
 @all = @cards.dup
@@ -179,5 +182,6 @@ end
 3.times do
 @select << @cards.shift
 end
+
 @target = [[],[],[],[]]
 select while true
