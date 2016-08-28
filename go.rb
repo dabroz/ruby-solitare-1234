@@ -63,27 +63,6 @@ class Game
     end
     @target = [[],[],[],[]]
   end
-  def render
-    gtcp 1, 1, ' ' * (WIDTH * 40)
-    @stacks.each_with_index do |stack, index|
-      stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card)
-      end
-      printkey(index * 11 + 4, 10 + 15 + 5, index+1)
-    end
-    @target.each_with_index do |target, index|
-      x = index * 11 + 37
-      printcard(x, 2, target.last)
-      printkey(x, 1, %w(a b c d)[index])
-    end
-    printcard(4, 2, '')
-    @select.each_with_index do |select, index|
-      printcard(15 + index * 4, 2, select)
-    end
-    printkey(4, 1, 'q')
-    printkey(12 + 4 * @select.count, 1, 'w')
-    gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
-  end
   def printkey(x,y,k)
     gtcp x + 2, y, "[ #{k} ]"
   end
@@ -157,7 +136,27 @@ class Game
     end
     ts << selected_card
   end
-  def process(key)
+  def select
+    gtcp 1, 1, ' ' * (WIDTH * 40)
+    @stacks.each_with_index do |stack, index|
+      stack.each_with_index do |card, cindex|
+        printcard(index * 11 + 4, 10 + cindex, card)
+      end
+      printkey(index * 11 + 4, 10 + 15 + 5, index+1)
+    end
+    @target.each_with_index do |target, index|
+      x = index * 11 + 37
+      printcard(x, 2, target.last)
+      printkey(x, 1, %w(a b c d)[index])
+    end
+    printcard(4, 2, '')
+    @select.each_with_index do |select, index|
+      printcard(15 + index * 4, 2, select)
+    end
+    printkey(4, 1, 'q')
+    printkey(12 + 4 * @select.count, 1, 'w')
+    gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
+    key = STDIN.getch
     if @mode and key >= '1' and key <= '7'
       prev = @selected_stack
       prevc = selected_card
@@ -205,8 +204,4 @@ end
 
 print "\e[?25l"
 game = Game.new
-while true
-  game.render
-  key = STDIN.getch
-  game.process(key)
-end
+game.select while true
