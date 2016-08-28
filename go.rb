@@ -5,9 +5,9 @@ HEIGHT = `tput lines`.to_i
 CARDS = "♥♦♣♠"
 GAMEID = (ARGV[0] || rand(2**16)).to_i
 
-CRED = "\033[1;31m"
-CBLACK = "\033[1;30m"
-CNORMAL = "\033[0m\n"
+#CRED = "\033[1;31m"
+#CBLACK = "\033[1;30m"
+#CNORMAL = "\033[0m\n"
 
 class Card
   def initialize(num)
@@ -26,9 +26,9 @@ class Card
   def red?
     color < 2
   end
-  def pcolor
-    red? ? CRED : CBLACK
-  end
+  #def pcolor
+  #  red? ? CRED : CBLACK
+  #end
   def pvalue
     #return '⑽' if value == 10
     return 'J' if value == 11
@@ -95,6 +95,7 @@ class Game
       printcard(11 + 4 + index * 3, 2, select)
     end
     print CNORMAL
+    color(0,7,false,true)
   end
   def goto(x,y)
     print "\033[#{y};#{x}H"
