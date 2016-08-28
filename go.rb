@@ -89,22 +89,22 @@ class Game
   def selected_card
     @all.detect(&:selected?)
   end
-  def move_to(target_stack)
+  def move_to(target)
     from_stack = @selected_stack
-    return if from_stack == target_stack
+    return if from_stack == target
     if from_stack
       seq = from_stack[from_stack.index(selected_card)..-1]
     else
       seq = [selected_card]
     end
-    last_target = target_stack.last
+    last_target = target.last
     if last_target == nil
       return unless selected_card.value == 13
     else
       return if !last_target.accept(seq.first)
     end
     seq.each do |card|
-      target_stack << card
+      target << card
       if from_stack
         from_stack.delete(card)
       else
