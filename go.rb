@@ -107,6 +107,7 @@ class Game
     end
     @target.each_with_index do |target, index|
       printcard(11+index * 11 + 37-11, 2, target[0])
+      printkey(11+index * 11 + 37-11, 2, 'a' + index)
     end
     printcard(4, 2, '')
     @select.each_with_index do |select, index|
