@@ -1,6 +1,6 @@
 require 'io/console'
 
-class Card
+class C
 def initialize(num)
 @num = num
 @x2 = false
@@ -44,7 +44,7 @@ end
 def q2(x,y,type,key)
 ss = '---'
 n = "|       |"
-if type.is_a? Card and type.x2?
+if type.is_a? C and type.x2?
 ss = type
 n = "|xxxxxxx|" if type.selected?
 end
@@ -164,7 +164,7 @@ end
 @t.each do |stack| stack.last&.reveal end
 end
 @i = true
-@p = (0...52).map {|n| Card.new(n) }
+@p = (0...52).map {|n| C.new(n) }
 @u = @p.dup
 @y = []
 @p.shuffle!
