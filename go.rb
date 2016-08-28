@@ -70,6 +70,9 @@ class Game
         printcard(index * 11 + 4, 9 + cindex, card)
       end
     end
+    @target.each_with_index do |target, index|
+      printcard(index * 11 + 20, 2, @target[0])
+    end
     print CNORMAL
   end
   def goto(x,y)
