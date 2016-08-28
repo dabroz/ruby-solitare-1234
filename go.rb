@@ -70,6 +70,7 @@ class Game
       n.times do
         @stacks[n - 1] << @cards.shift
       end
+      @stacks[n - 1].reverse!
     end
     @stacks.each do |s| s.last.reveal end
     @select = []
