@@ -19,7 +19,7 @@ class Card
     color < 2
   end
   def to_s
-    "♥♦♣♠"[color] + %w(0 1 2 3 4 5 6 7 8 9 10 J Q K A)[value]
+    "♥♦♣♠"[color] + ((0..10).to_a + %w(J Q K A))[value].to_s
   end
   def revealed?
     @revealed
