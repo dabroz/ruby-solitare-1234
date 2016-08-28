@@ -326,6 +326,7 @@ class Game
 end
 
 print "\e[?25l"
+at_exit do print "\e[?25h" end
 game = Game.new
 while true
   game.render
