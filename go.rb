@@ -94,7 +94,7 @@ class Game
     @select.each_with_index do |select, index|
       printcard(11 + 4 + index * 3, 2, select)
     end
-    print CNORMAL
+   # p#rint CNORMAL
     color(0,7,false,true)
   end
   def goto(x,y)
