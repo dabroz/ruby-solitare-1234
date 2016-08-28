@@ -124,14 +124,11 @@ class Game
     bg = 105 if sel 
     cc = red ? 91 : 30
     cc = 97 if red and sel
-    q = 0
-    gtcp x, y + q, cc, bg
-    print "┏#{ss}━━━━┓"
+    gtcp x, y + 0, cc, bg, "┏#{ss}━━━━┓"
     (1..5).each do |q|
       gtcp x, y + q, cc, bg, "┃       ┃"
     end
-    goto(x,y+6)
-    print "┗━━━━━━━┛"
+    gtcp x, y + 6, cc, bg, "┗━━━━━━━┛"
   end
   def unselect
     @selected_stack = nil
