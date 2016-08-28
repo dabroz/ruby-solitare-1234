@@ -276,6 +276,7 @@ class Game
       unselect
       @select.last.select
     elsif @mode == 'select' and key == 'q'
+      unselect
       @select.each do |card| @grave << card end
       @select = []
       3.times do
