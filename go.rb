@@ -158,7 +158,8 @@ class Game
 end
 
 # ╔═╗ ╚╝ ░ ▒ ▓ ║
-
+#CNORMAL = "\033[0m\n"
+print "\e[?25l"
 Game.new.render
 STDIN.getch
 #print CNORMAL
