@@ -13,8 +13,11 @@ class Card
   def value
     @num % 13 + 2
   end
+  def suit
+    CARDS[color]
+  end
   def to_s
-    "#{color}/#{value}"
+    "#{suit}#{value}"
   end
 end
 
