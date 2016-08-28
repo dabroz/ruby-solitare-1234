@@ -142,7 +142,6 @@ class Game
         t = q == 3 ? type.to_s : '   '
         if !visible2 and q==3
           print t
-
         else
           print "┃  #{t}  ┃"
         end
@@ -192,17 +191,13 @@ class Game
   def move_to_target(target)
     ts = @target[target]
     exp = 14
-    expc = nil
     if ts.count > 0
       if ts.last.value == 14
         exp = 2
       else
         exp = ts.last.value + 1
       end
-      expc = ts.last.color
-    end
-    if expc
-      return unless selected_card.color == expc
+      return unless selected_card.color == ts.last.color
     end
     return unless selected_card.value == exp
     if @selected_stack
