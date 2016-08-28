@@ -1,5 +1,5 @@
-WIDTH = `tput cols`
-HEIGHT = `tput lines`
+WIDTH = `tput cols`.to_i
+HEIGHT = `tput lines`.to_i
 CARDS = "♥♦♣♠"
 GAMEID = (ARGV[0] || rand(2**16)).to_i
 
