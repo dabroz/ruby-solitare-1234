@@ -112,7 +112,7 @@ class Game
     @select.each_with_index do |select, index|
       printcard(11 + 4 + index * 3, 2, select)
     end
-   # p#rint CNORMAL
+    # p#rint CNORMAL
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
@@ -186,8 +186,9 @@ class Game
     @all.detect(&:selected?)
   end
   def move_to(target_stack)
-    target_stack = @stacks[target_stack]
     from_stack = @selected_stack
+    return if from_stack == target_stack
+    target_stack = @stacks[target_stack]
     from_stack = @stacks[from_stack]
     index = from_stack.index(selected_card)
     #print QCNORMAL
@@ -203,15 +204,13 @@ class Game
       print "TODO"; abort
     else
       if !last_target.accept(seq.first)
-        @mode = 'select'
-        unselect
+        #  @mode = 'select'
+        #  unselect
         return
       end
     end
     target_stack += seq
     from_stack -= seq
-    unselect
-    @mode = 'select'
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
@@ -222,6 +221,8 @@ class Game
       @mode = 'move'
     elsif @mode == 'move' and key >= '1' and key <= '7'
       move_to(key.ord - '1'.ord)
+      unselect
+      @mode = 'select'
     else
       abort
     end
@@ -237,4 +238,3 @@ while true
   key = STDIN.getch
   game.process(key)
 end
-
