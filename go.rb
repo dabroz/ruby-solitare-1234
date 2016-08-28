@@ -118,7 +118,7 @@ class Game
       print " | [ r ] to cancel"
     end
     print " | [ p ] to quit"
-    print QCNORMAL
+    #print QCNORMAL
     goto(WIDTH-1,HEIGHT)
   end
   def printkey(x,y,k)
@@ -327,7 +327,7 @@ class Game
 end
 
 print "\e[?25l"
-at_exit do print "\e[?25h" end
+at_exit do print "\e[?25h";print QCNORMAL end
 game = Game.new
 while true
   game.render
