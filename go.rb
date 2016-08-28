@@ -12,6 +12,7 @@ CNORMAL = "\033[0m\n"
 class Card
   def initialize(num)
     @num = num
+    @revealed = false
   end
   def color
     (@num / 13).to_i
@@ -31,6 +32,12 @@ class Card
   def to_s
     "#{suit}#{value}"
     #pcolor + "#{suit}#{value}" + CNORMAL
+  end
+  def revealed?
+    @revealed
+  end
+  def reveal
+    @revealed = true
   end
 end
 
@@ -86,6 +93,9 @@ class Game
     print "\033[#{fg};#{bg}m"
   end
   def printcard(x,y,type)
+    if type.is_a? Card and !type.revealed?
+      type = ''
+    end
     red = false
     red = type.red? if type.is_a? Card
     special = type == ''
