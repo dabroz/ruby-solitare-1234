@@ -83,8 +83,8 @@ class Game
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
-      n = t.length
-      n1 = ((8-n)/2).to_i
+      n = 8-t.length
+      n1 = (n/2).to_i
       n2 = n-n1
       print "║"
       print " " * n1
