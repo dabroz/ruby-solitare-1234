@@ -1,7 +1,6 @@
 require 'io/console'
 
 WIDTH = `tput cols`.to_i
-HEIGHT = `tput lines`.to_i
 GAMEID = (ARGV[0] || rand(2**16)).to_i
 
 class Card
@@ -65,7 +64,7 @@ class Game
     @target = [[],[],[],[]]
   end
   def render
-    gtcp 1, 1, 90, 42, ' ' * (WIDTH * (HEIGHT-2))
+    gtcp 1, 1, 90, 42, ' ' * (WIDTH * 40)
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card)
@@ -83,7 +82,7 @@ class Game
     end
     printkey(4, 1, 'q')
     printkey(12 + 4 * @select.count, 1, 'w')
-    gtcp 1, HEIGHT - 1, 30, 107, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
+    gtcp 1, 39, 30, 107, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
   end
   def printkey(x,y,k)
     gtcp x + 2, y, 30, 107, "[ #{k} ]"
