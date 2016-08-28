@@ -71,7 +71,7 @@ class Game
       end
     end
     @target.each_with_index do |target, index|
-      printcard(index * 11 + 40, 2, target[0])
+      printcard(index * 11 + 36, 2, target[0])
     end
     print CNORMAL
   end
