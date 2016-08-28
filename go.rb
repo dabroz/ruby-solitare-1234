@@ -82,10 +82,10 @@ class Game
     end
     printcard(4, 2, '') if (@cards.count+@grave.count) > 0
     @select.each_with_index do |select, index|
-      printcard(11 + 4 + index * 3, 2, select, true, index == @select.count - 1)
+      printcard(15 + index * 4, 2, select, true, index == @select.count - 1)
     end
     printkey(4, 1, 'q') if @mode == 'select' and (@cards.count+@grave.count) > 0
-    printkey(4+11 + 3 * @select.count - 3, 1, 'w') if @mode == 'select' and @select.count > 0
+    printkey(15 + 4 * @select.count - 3, 1, 'w') if @mode == 'select' and @select.count > 0
     color2(30,107)
     goto(1,HEIGHT-1)
     print " "*WIDTH*2
@@ -111,44 +111,32 @@ class Game
   def color2(fg,bg)
     print "\033[#{fg};#{bg}m"
   end
+  def gtc(x, y, fg, bg)
+    print "\033[#{y};#{x}H\033[#{fg};#{bg}m"
+  end
   def printcard(x,y,type,visible=true,visible2=true)
+    ss = '━━━'
     if type.is_a? Card
       if type.revealed?
         sel = type.selected?
         red = type.red?
         card = true
+        ss = type
       else
-        type = ''
         card = false
       end
     end
-    goto(x,y)
     bg = type ? 107 : 42
     bg = 106 if type == ''
     bg = 105 if sel 
     cc = red ? 91 : 30
     cc = 97 if red and sel 
 
-    color2(cc,bg)
-    print "┏"
-    if card && !visible
-      print "#{type}"
-    else
-      print "━━━"
-    end
-    print "━━━━┓"
+    gtc(x, y, cc, bg)
+    print "┏#{ss}━━━━┓"
     (1..5).each do |q|
-      goto(x,y+q)
-      if type == '' || type == nil
-        print "┃░░░░░░░┃"
-      else
-        t = q == 3 ? type.to_s : '   '
-        if !visible2 and q==3
-          print t
-        else
-          print "┃  #{t}  ┃"
-        end
-      end
+      goto(x, y + q)
+      print "┃       ┃"
     end
     goto(x,y+6)
     print "┗━━━━━━━┛"
