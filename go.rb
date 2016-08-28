@@ -92,7 +92,7 @@ class Game
     end
     @target.each_with_index do |target, index|
       printcard(11+index * 11 + 37-11, 2, target.last)
-      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) unless @mode == 'reveal'
+      printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr) if @mode == 'move' 
     end
     printcard(4, 2, '')
     @select.each_with_index do |select, index|
