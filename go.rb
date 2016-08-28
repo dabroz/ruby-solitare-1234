@@ -272,6 +272,9 @@ class Game
     elsif @mode == 'select' and key == 'r'
       unselect
       @mode = 'reveal'
+    elsif @mode == 'select' and key == 'w'
+      unselect
+      selected_card = @select.last
     elsif @mode == 'select' and key == 'q'
       @select.each do |card| @grave << card end
       @select = []
