@@ -1,4 +1,4 @@
-WIDTH = `tput rows`
+WIDTH = `tput lines`
 HEIGHT = `tput cols`
 CARDS = "♠♥♦♣"
 GAMEID = ARGV[0] || rand(2**16)
