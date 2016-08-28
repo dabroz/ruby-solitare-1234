@@ -76,13 +76,16 @@ class Game
     renderbg
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 10 + cindex, card)
+        printcard(11+index * 11 + 4, 10 + cindex, card)
       end
     end
     @target.each_with_index do |target, index|
-      printcard(index * 11 + 37, 2, target[0])
+      printcard(11+index * 11 + 37, 2, target[0])
     end
     printcard(4, 2, '')
+    @select.each_with_index do |select, index|
+      printcard(11 + 4, 2, select)
+    end
     print CNORMAL
   end
   def goto(x,y)
