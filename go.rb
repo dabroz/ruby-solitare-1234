@@ -108,7 +108,13 @@ class Game
     bg = type ? 107 : 42
     bg = 106 if special
     color2(30,bg)
-    print "┏━━━━━━━┓"
+    print "┏━━━━"
+    if special
+      color2(30,106)
+    end
+    print "━━"
+    color2(30,bg)
+    print "━┓"
     (1..5).each do |q|
       goto(x,y+q)
       bg = 104 if special and q == 3
