@@ -64,7 +64,7 @@ class Game
     @target = [[],[],[],[]]
   end
   def render
-    gtcp 1, 1, 90, 42, ' ' * (WIDTH * 40)
+    gtcp 1, 1, ' ' * (WIDTH * 40)
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
         printcard(index * 11 + 4, 10 + cindex, card)
@@ -82,39 +82,31 @@ class Game
     end
     printkey(4, 1, 'q')
     printkey(12 + 4 * @select.count, 1, 'w')
-    gtcp 1, 39, 30, 107, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
+    gtcp 1, 39, " [ m ] #{@mode ? 'move' : 'cancel'}#{' '*40}"
   end
   def printkey(x,y,k)
-    gtcp x + 2, y, 30, 107, "[ #{k} ]"
+    gtcp x + 2, y, "[ #{k} ]"
   end
-  def gtcp x, y, fg, bg, t = ''
-    print "\033[#{y};#{x}H\033[#{fg};#{bg}m#{t}"
+  def gtcp x, y, t = ''
+    print "\033[#{y};#{x}H#{t}"
   end
   def printcard(x,y,type)
     ss = '━━━'
-    cc = 30
-    bg = 42
     if type
-      bg = 107
       if type.is_a? Card
         if type.revealed?
           sel = type.selected?
           ss = type
-          if type.red?
-            cc = sel ? 97 : 91
-          end
-          bg = 105 if sel
         else
           type = ''
         end
-        bg = 106 if type == ''
       end
     end
-    gtcp x, y + 0, cc, bg, "┏#{ss}━━━━┓"
+    gtcp x, y + 0, "┏#{ss}━━━━┓"
     (1..5).each do |q|
-      gtcp x, y + q, cc, bg, "┃       ┃"
+      gtcp x, y + q, sel ? "┃xxxxxxx┃" : "┃       ┃"
     end
-    gtcp x, y + 6, cc, bg, "┗━━━━━━━┛"
+    gtcp x, y + 6, "┗━━━━━━━┛"
   end
   def unselect
     @selected_stack = nil
