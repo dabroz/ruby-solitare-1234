@@ -202,46 +202,32 @@ class Game
   end
   def move_to(target_stack)
     from_stack = @selected_stack
-    raise 'a' if from_stack == target_stack
+    return if from_stack == target_stack
     target_stack = @stacks[target_stack]
     from_stack = @stacks[from_stack]
     index = from_stack.index(selected_card)
-    #print QCNORMAL
-    #print "FROM #{target_stack}/ index = #{index}"
-    #abort
     seq = from_stack[index..-1]
-    #print QCNORMAL
-    #print "FROM #{target_stack}/ index = #{index}"
-    #print seq
-    #abort
     last_target = target_stack.last
     if last_target == nil
       print "TODO"; abort
     else
       if !last_target.accept(seq.first)
-        print QCNORMAL
-        puts "last = #{last_target}"
-        puts "next = #{seq.first}"
-        abort
+        #print QCNORMAL
+        #puts "last = #{last_target}"
+        ##puts "next = #{seq.first}"
+        #a#bort
         #  @mode = 'select'
         #  unselect
         return
       end
     end
-    #    raise 'ok'
     seq.each do |card|
       target_stack << card
       from_stack.delete(card)
     end
-    # print QCNORMAL
-    # puts from_stack
-    # puts "->"
-    # puts target_stack
-    # raise 'ok'
-    # @stacks.each_with_index do |stack,index|
-    #   puts "stack #{index}: #{stack.map(&:to_s)}"
-    #  end
-    #  abort
+  end
+  def reveal(stack)
+    @stacks[stack].last.reveal
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
@@ -252,6 +238,12 @@ class Game
       @mode = 'move'
     elsif @mode == 'move' and key >= '1' and key <= '7'
       move_to(key.ord - '1'.ord)
+      unselect
+      @mode = 'select'
+    elsif @mode == 'select' and key == 'r'
+      @mode = 'reveal'
+    elsif @mode == 'reveal' and key >= '1' and key <= '7'
+      reveal(key.ord - '1'.ord)
       unselect
       @mode = 'select'
     else
