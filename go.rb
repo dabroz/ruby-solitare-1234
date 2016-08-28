@@ -67,11 +67,11 @@ class Game
     renderbg
     @stacks.each_with_index do |stack, index|
       stack.each_with_index do |card, cindex|
-        printcard(index * 11 + 4, 9 + cindex, card)
+        printcard(index * 11 + 4, 11 + cindex, card)
       end
     end
     @target.each_with_index do |target, index|
-      printcard(index * 11 + 36, 2, target[0])
+      printcard(index * 11 + 37, 2, target[0])
     end
     print CNORMAL
   end
