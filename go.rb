@@ -155,7 +155,10 @@ class Game
         print "░░░░░░░"
       else
         print " " * n1
-        color2(red ? 91 : 30, bg)
+
+        cc = red ? 91 : 30
+        cc = 97 if red and type.selected?
+        color2(cc, bg)
         print t
         color2(30,bg)
         print " " * n2
