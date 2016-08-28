@@ -122,6 +122,10 @@ class Game
     if @mode == 'select'
       print " | press key to select card"
       print " | [ r ] to switch to revealing cards"
+      print " | [ m ] to move to another stack" if selected_card
+    elsif @mode == 'move'
+      print " | press key to move card"
+      print " | [ m ] to cancel"
     end
   end
   def printkey(x,y,k)
@@ -248,7 +252,11 @@ class Game
         revealed.last.select  
       end
     elsif @mode == 'select' and key == 'm'
-      @mode = 'move'
+      if selected_card
+        @mode = 'move'
+      end
+    elsif @mode == 'move' and key == 'm'
+      @mode = 'select'      
     elsif @mode == 'move' and key >= '1' and key <= '7'
       move_to(key.ord - '1'.ord)
       unselect
