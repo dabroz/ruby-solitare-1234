@@ -83,7 +83,9 @@ class Game
      color(0,7,false,true)
     print "▛"
     color(7,0,true,false)
-    print "▄▄▄▄▄▄▄╗"
+    print "▄▄▄▄▄▄▄"
+     color(0,7,false,true)
+    print "▜"
     (1..5).each do |q|
       goto(x,y+q)
       t = type.to_s
