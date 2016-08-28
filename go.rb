@@ -91,7 +91,7 @@ class Game
       printkey(index * 11 + 4, 10 + 15, index+1)
     end
     @target.each_with_index do |target, index|
-      printcard(11+index * 11 + 37-11, 2, target[0])
+      printcard(11+index * 11 + 37-11, 2, target.last)
       printkey(11+index * 11 + 37-11, 1, ('a'.ord + index).chr)
     end
     printcard(4, 2, '')
