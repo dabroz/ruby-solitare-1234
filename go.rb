@@ -140,8 +140,6 @@ class Game
     print "━━┓"
     (1..5).each do |q|
       goto(x,y+q)
-      bg = 104 if special and q == 3
-      bg = 103 if special and q == 4
       color2(30,bg)
       t = type.to_s
       t ='' unless q == 3
@@ -150,18 +148,7 @@ class Game
       n2 = n-n1
       print "┃"
       if type == '' || type == nil
-        if special
-          color2(30,q < 3 ? 102 : 43)
-        end
-        print "░░"
-        color2(30,bg)
-        print "░░"
-        if special and q==1
-          color2(30,103)
-        end
-        print "░░"
-        color2(30,bg)
-        print "░"
+        print "░░░░░░░"
       else
         if !visible2
           n2 += n1
