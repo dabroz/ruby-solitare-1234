@@ -38,7 +38,7 @@ child.value == value - 1
 end
 end
 
-def gtcp x, y, t = ''
+def e2 x, y, t = ''
 print "\033[#{y};#{x}H#{t}"
 end
 def q2(x,y,type,key)
@@ -48,11 +48,11 @@ if type.is_a? C and type.x2?
 ss = type
 n = "|xxxxxxx|" if type.selected?
 end
-gtcp x, y + 0, "+#{ss}----+"
+e2 x, y + 0, "+#{ss}----+"
 (1..5).each do |q|
-gtcp x, y + q, n
+e2 x, y + q, n
 end
-gtcp x, y + 6, "|_[ #{key} ]_|"
+e2 x, y + 6, "|_[ #{key} ]_|"
 end
 def unselect
 @r = nil
@@ -104,7 +104,7 @@ end
 ts << q1
 end
 def q7
-gtcp 1, 1, "\033[2J\033[1;1H"
+e2 1, 1, "\033[2J\033[1;1H"
 @t.each_with_index do |stack, index|
 stack.each_with_index do |card, cindex|
 q2(index * 11 + 4, 10 + cindex, card, index+1)
@@ -118,7 +118,7 @@ q2(4, 2, '', 'q')
 @o.each_with_index do |select, index|
 q2(15 + index * 4, 2, select,'w')
 end
-gtcp 1, 39, " [ m ] #{@i ? 'move' : 'cancel'}#{' '*40}"
+e2 1, 39, " [ m ] #{@i ? 'move' : 'cancel'}#{' '*40}"
 key = STDIN.getch
 if @i and key >= '1' and key <= '7'
 prev = @r
