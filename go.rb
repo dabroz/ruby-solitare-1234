@@ -177,10 +177,10 @@ class Game
     @all.each(&:unselect)
   end
   def process(key)
-    if key >= '1' and key <= '7'
+    if @mode == 'select' and key >= '1' and key <= '7'
       unselect
       @stacks[key.ord - '1'.ord].last.select
-    elsif key == 'm'
+    elsif @mode == 'select' and key == 'm'
       @mode = 'move'
     else
       abort
