@@ -204,6 +204,10 @@ class Game
       print "TODO"; abort
     else
       if !last_target.accept(seq.first)
+        print QCNORMAL
+        puts "last = #{last_target}"
+        puts "next = #{seq.first}"
+        abort
         #  @mode = 'select'
         #  unselect
         return
