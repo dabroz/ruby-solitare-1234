@@ -178,6 +178,8 @@ class Game
     if key >= '1' and key <= '7'
       unselect
       @stacks[key.ord - '1'.ord].last.select
+    elsif key == 'm'
+      @mode = 'move'
     else
       abort
     end
