@@ -99,7 +99,7 @@ class Game
     color(0,7,false,true)
   end
   def printkey(x,y,k)
-    goto(x,y)
+    goto(x+2,y)
     color(0,7,true,true)
     print "[ #{k} ]"
   end
