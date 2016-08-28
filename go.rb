@@ -19,7 +19,7 @@ class Card
     color < 2
   end
   def to_s
-    "♥♦♣♠"[color] + ((0..10).to_a + %w(J Q K A))[value].to_s
+    "♥♦♣♠"[color] + %w(0 1 2 3 4 5 6 7 8 9 10 J Q K A)[value]
   end
   def revealed?
     @revealed
@@ -155,7 +155,6 @@ class Game
           n1 = 0
         end
         print " " * n1
-
         cc = red ? 91 : 30
         cc = 97 if red and type.selected?
         color2(cc, bg)
