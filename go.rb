@@ -237,7 +237,11 @@ class Game
       return unless selected_card.color == expc
     end
     return unless selected_card.value == exp
-    @stacks[@selected_stack].delete(selected_card)
+    if @selected_stack
+      @stacks[@selected_stack].delete(selected_card)
+    else
+      @select.delete(selected_card)
+    end
     ts << selected_card
   end
   def process(key)
