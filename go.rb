@@ -83,8 +83,7 @@ class Game
     end
     printkey(4, 1, 'q') if @mode and (@cards.count+@grave.count) > 0
     printkey(12 + 4 * @select.count, 1, 'w') if @mode and @select.count > 0
-    color2(30,107)
-    goto(1,HEIGHT-1)
+    gtcp 1, HEIGHT - 1, 30, 107
     if selected_card
       print " [ m ] #{@mode ? 'move' : 'cancel'}"
     end
@@ -92,12 +91,6 @@ class Game
   end
   def printkey(x,y,k)
     gtcp x + 2, y, 30, 107, "[ #{k} ]"
-  end
-  def goto(x,y)
-    print "\033[#{y};#{x}H"
-  end
-  def color2(fg,bg)
-    print "\033[#{fg};#{bg}m"
   end
   def gtcp x, y, fg, bg, t = ''
     print "\033[#{y};#{x}H\033[#{fg};#{bg}m#{t}"
