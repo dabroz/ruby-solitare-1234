@@ -1,7 +1,5 @@
 require 'io/console'
 
-GAMEID = (ARGV[0] || rand(2**16)).to_i
-
 class Card
   def initialize(num)
     @num = num
@@ -46,7 +44,7 @@ class Game
     @cards = (0...52).map {|n| Card.new(n) }
     @all = @cards.dup
     @grave = []
-    @cards.shuffle!(random: Random.new(GAMEID))
+    @cards.shuffle!
     @stacks = []
     (1..7).each do |n|
       @stacks << []
