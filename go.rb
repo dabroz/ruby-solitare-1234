@@ -130,7 +130,7 @@ class Game
   def color2(fg,bg)
     print "\033[#{fg};#{bg}m"
   end
-  def printcard(x,y,type)
+  def printcard(x,y,type,visible=true)
     if type.is_a? Card and !type.revealed?
       type = ''
     end
@@ -146,10 +146,10 @@ class Game
     color2(30,bg)
     print "┏━━━━"
     if special
-      color2(30,103)
+    #  color2(30,103)
     end
     print "━━"
-    color2(30,bg)
+   # color2(30,bg)
     print "━┓"
     (1..5).each do |q|
       goto(x,y+q)
@@ -172,7 +172,11 @@ class Game
         color2(cc, bg)
         print t
         color2(30,bg)
+    if special and q==0
+      color2(30,103)
+    end
         print " " * n2
+        color2(30,bg)
       end
       print "┃"
     end
