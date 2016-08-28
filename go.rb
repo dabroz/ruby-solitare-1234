@@ -218,7 +218,7 @@ class Game
     end
     last_target = target_stack.last
     if last_target == nil
-      
+      return unless selected_card.value == 13
     else
       return if !last_target.accept(seq.first)
     end
