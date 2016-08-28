@@ -29,7 +29,8 @@ class Card
     red? ? CRED : CBLACK
   end
   def to_s
-    pcolor + "#{suit}#{value}" + CNORMAL
+    "#{suit}#{value}"
+    #pcolor + "#{suit}#{value}" + CNORMAL
   end
 end
 
