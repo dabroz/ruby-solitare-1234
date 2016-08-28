@@ -178,7 +178,7 @@ class Game
       n2 = n-n1
       print "┃"
       if type == '' || type == nil
-        if special and q==1
+        if special and q<3
           color2(30,102)
         end
         print "░░"
