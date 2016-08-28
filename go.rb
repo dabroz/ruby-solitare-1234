@@ -3,7 +3,7 @@ require 'io/console'
 class Card
 def initialize(num)
 @num = num
-@revealed = false
+@x2 = false
 end
 def color
 (@num / 13).to_i
@@ -17,11 +17,11 @@ end
 def to_s
 "#{'♥♦♣♠'[color]}#{value != 10 ? ' ' : '1'}#{'01234567890JQKA'[value]}"
 end
-def revealed?
-@revealed
+def x2?
+@x2
 end
 def reveal
-@revealed = true
+@x2 = true
 end
 def selected?
 @oed
@@ -44,7 +44,7 @@ end
 def q2(x,y,type,key)
 ss = '---'
 n = "|       |"
-if type.is_a? Card and type.revealed?
+if type.is_a? Card and type.x2?
 ss = type
 n = "|xxxxxxx|" if type.selected?
 end
@@ -61,7 +61,7 @@ end
 def q1
 @u.detect(&:selected?)
 end
-def move_to(target)
+def f1(target)
 b8 = @r
 return if b8 == target
 if b8
@@ -125,20 +125,20 @@ prev = @r
 prevc = q1
 unselect
 @r = @t[key.ord - '1'.ord]
-revealed = @r.select(&:revealed?)
-return if revealed.count == 0
+x2 = @r.select(&:x2?)
+return if x2.count == 0
 if prevc and prev == @r
-previ = revealed.index(prevc)
-revealed[(previ+1) % revealed.count].select
+previ = x2.index(prevc)
+x2[(previ+1) % x2.count].select
 else
-revealed.last.select
+x2.last.select
 end
 elsif @i and key == 'm'
 @i = false if q1
 elsif !@i and key == 'm'
 @i = true
 elsif !@i and key >= '1' and key <= '7'
-move_to(@t[key.ord - '1'.ord])
+f1(@t[key.ord - '1'.ord])
 unselect
 @i = true
 elsif !@i and key >= 'a' and key <= 'd'
