@@ -8,10 +8,10 @@ class Card
     @num = num
   end
   def color
-    (num / 13).to_i
+    (@num / 13).to_i
   end
   def value
-    num % 13 + 1
+    @num % 13 + 1
   end
   def to_s
     "#{color}#{value}"
