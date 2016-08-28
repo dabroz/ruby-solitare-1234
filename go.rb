@@ -105,8 +105,8 @@ ts << q1
 end
 def q7
 e2 1, 1, "\033[2J\033[1;1H"
-@t.each_with_index do |stack, index|
-stack.each_with_index do |card, cindex|
+@t.each_with_index do |n, index|
+n.each_with_index do |card, cindex|
 q2(index * 11 + 4, 10 + cindex, card, index+1)
 end
 end
