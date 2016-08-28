@@ -215,18 +215,18 @@ class Game
     end
     #    raise 'ok'
     seq.each do |card|
-    target_stack << card
-    from_stack.delete(card)
-  end
-    print QCNORMAL
+      target_stack << card
+      from_stack.delete(card)
+    end
+    # print QCNORMAL
     # puts from_stack
     # puts "->"
     # puts target_stack
     # raise 'ok'
-    @stacks.each_with_index do |stack,index|
-      puts "stack #{index}: #{stack.map(&:to_s)}"
-    end
-    abort
+    # @stacks.each_with_index do |stack,index|
+    #   puts "stack #{index}: #{stack.map(&:to_s)}"
+    #  end
+    #  abort
   end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
