@@ -13,6 +13,9 @@ class Card
   def value
     num % 13 + 1
   end
+  def to_s
+    "#{color}#{value}"
+  end
 end
 
 class Game
