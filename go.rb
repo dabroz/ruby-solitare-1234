@@ -84,7 +84,7 @@ class Game
     end
     printcard(4, 2, '')
     @select.each_with_index do |select, index|
-      printcard(11 + 4, 2, select)
+      printcard(11 + 4 + index, 2, select)
     end
     print CNORMAL
   end
