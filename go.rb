@@ -9,6 +9,8 @@ GAMEID = (ARGV[0] || rand(2**16)).to_i
 #CBLACK = "\033[1;30m"
 #CNORMAL = "\033[0m\n"
 
+QCNORMAL = "\033[0m\n"
+
 class Card
   def initialize(num)
     @num = num
@@ -176,12 +178,25 @@ class Game
   def unselect
     @all.each(&:unselect)
   end
+  def selected_card
+    @all.detect(&:selected?)
+  end
+  def move_to(target_stack)
+    from_stack = @selected_stack
+    index = @stacks[from_stack].index(selected_card)
+    print QCNORMAL
+    print "FROM #{target_stack}/ index = #{index}"
+    abort
+  end
   def process(key)
     if @mode == 'select' and key >= '1' and key <= '7'
       unselect
-      @stacks[key.ord - '1'.ord].last.select
+      @selected_stack = key.ord - '1'.ord
+      @stacks[@selected_stack].last.select
     elsif @mode == 'select' and key == 'm'
       @mode = 'move'
+    elsif @mode == 'move' and key >= '1' and key <= '7'
+      move_to(key.ord - '1'.ord)
     else
       abort
     end
