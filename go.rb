@@ -272,6 +272,7 @@ class Game
       @mode = 'reveal'
     elsif @mode == 'select' and key == 'q'
       @select.each do |card| @cards << card end
+      @select = []
       3.times do @select << @cards.shift end
       @mode = 'select'
     elsif @mode == 'reveal' and key >= '1' and key <= '7'
