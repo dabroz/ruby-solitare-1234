@@ -98,7 +98,7 @@ class Game
       printcard(11 + 4 + index * 3, 2, select)
     end
       printkey(4, 1, 'q')
-      printkey(4+11 + 4 * @select.count - 2, 1, 'w')
+      printkey(4+11 + 4 * @select.count - 6, 1, 'w')
     goto(1,HEIGHT)
     print " "*WIDTH
     goto(1,HEIGHT)
