@@ -253,8 +253,5 @@ while true
   game.render
   key = STDIN.getch
   game.process(key)
-  if game.won?
-    puts "\033[0m\n You won!"
-    exit(0)
-  end
+  abort("Win") if game.won?
 end
