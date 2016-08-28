@@ -47,11 +47,21 @@ class Card
   def reveal
     @revealed = true
   end
+  def selected?
+    @selected
+  end
+  def select
+    @selected = true
+  end
+  def unselect
+    @selected = false
+  end
 end
 
 class Game
   def initialize
     @cards = (0...52).map {|n| Card.new(n) }
+    @all = @cards.dup
     @cards.shuffle!(random: Random.new(GAMEID))
     @stacks = [[],[],[],[],[],[],[]]
     (1..7).each do |n|
@@ -152,11 +162,24 @@ class Game
     goto(x,y+6)
     print "┗━━━━━━━┛"
   end
+  def unselect
+    @all.each(&:unselect)
+  end
+  def process(key)
+    if key == '1'
+      unselect
+      @stacks[0].last.select
+    end
+  end
 end
 
 # ╔═╗ ╚╝ ░ ▒ ▓ ║
 #CNORMAL = "\033[0m\n"
 print "\e[?25l"
-Game.new.render
-STDIN.getch
-#print CNORMAL
+game = Game.new
+while true
+  game.render
+  key = STDIN.getch
+  game.process(key)
+end
+
