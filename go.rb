@@ -23,11 +23,11 @@ class Card
   def red?
     color < 2
   end 
-  def color
+  def pcolor
     red? ? CRED : CBLACK
   end
   def to_s
-    color + "#{suit}#{value}" + CNORMAL
+    pcolor + "#{suit}#{value}" + CNORMAL
   end
 end
 
