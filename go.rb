@@ -1,14 +1,14 @@
 require 'io/console'
 
 class C
-def initialize(num)
-@num = num
+def initialize n
+@n = n
 end
 def color
-(@num / 13).to_i
+(@n / 13).to_i
 end
 def value
-@num % 13 + 2
+@n % 13 + 2
 end
 def red
 color < 2
