@@ -3,7 +3,6 @@ require 'io/console'
 class C
 def initialize(num)
 @num = num
-@x2 = false
 end
 def color
 (@num / 13).to_i
