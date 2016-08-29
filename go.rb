@@ -48,8 +48,8 @@ ss = type
 n = "|xxxxxxx|" if type.q1
 end
 e2 x, y + 0, "+#{ss}----+"
-(1..5).each do |q|
-e2 x, y + q, n
+5.times do |q|
+e2 x, y + 1 + q, n
 end
 e2 x, y + 6, "|_[ #{key} ]_|"
 end
