@@ -22,7 +22,7 @@ end
 def reveal
 @x2 = true
 end
-def selected?
+def q1
 @oed
 end
 def select
@@ -45,7 +45,7 @@ ss = '---'
 n = "|       |"
 if type.is_a? C and type.x2?
 ss = type
-n = "|xxxxxxx|" if type.selected?
+n = "|xxxxxxx|" if type.q1
 end
 e2 x, y + 0, "+#{ss}----+"
 (1..5).each do |q|
@@ -58,7 +58,7 @@ def e9
 @u.each(&:e9)
 end
 def q1
-@u.detect(&:selected?)
+@u.detect(&:q1)
 end
 def f1(e3)
 b8 = @r
