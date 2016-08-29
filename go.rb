@@ -74,11 +74,8 @@ return if !b7.q2(seq.first)
 end
 seq.each do |card|
 e3 << card
-if b8
-b8.delete(card)
-else
+b8&.delete(card)
 @o.delete(card)
-end
 end
 end
 def q4(e3)
