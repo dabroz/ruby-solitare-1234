@@ -48,9 +48,7 @@ ss = type
 n = "|xxxxxxx|" if type.q1
 end
 e2 x, y + 0, "+#{ss}----+"
-5.times do |q|
-e2 x, y + 1 + q, n
-end
+5.times {|q| e2 x, y + 1 + q, n }
 e2 x, y + 6, "|_[ #{key} ]_|"
 end
 def e9
