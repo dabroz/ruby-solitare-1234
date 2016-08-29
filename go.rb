@@ -95,11 +95,8 @@ end
 return unless q1.color == ts.last.color
 end
 return unless q1.value == exp
-if @r
-@r.delete(q1)
-else
+@r&.delete(q1)
 @o.delete(q1)
-end
 ts << q1
 end
 def q7
