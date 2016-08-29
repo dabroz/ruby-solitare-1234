@@ -177,6 +177,5 @@ end
 3.times do
 @o << @p.shift
 end
-
 @e3 = [[],[],[],[]]
 q7 while true
