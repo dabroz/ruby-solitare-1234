@@ -3,17 +3,17 @@ class C
 def initialize n
 @n = n
 end
-def color
+def q3
 (@n / 13).to_i
 end
 def value
 @n % 13 + 2
 end
 def red
-color < 2
+q3 < 2
 end
 def to_s
-"#{'♥♦♣♠'[color]}#{value != 10 ? ' ' : '1'}#{'01234567890JQKA'[value]}"
+"#{'♥♦♣♠'[q3]}#{value != 10 ? ' ' : '1'}#{'01234567890JQKA'[value]}"
 end
 def x2?
 @x2
@@ -38,18 +38,18 @@ end
 def e2 x, y, t = ''
 print "\033[#{y};#{x}H#{t}"
 end
-def q2(x,y,type,key)
+def q2 x, y, t, k
 ss = '---'
 n = "|       |"
-if type.is_a? C and type.x2?
-ss = type
-n = "|xxxxxxx|" if type.q1
+if t.is_a? C and t.x2?
+ss = t
+n = "|xxxxxxx|" if t.q1
 end
 e2 x, y + 0, "+#{ss}----+"
 5.times do |q|
 e2 x, y + 1 + q, n
 end
-e2 x, y + 6, "|_[ #{key} ]_|"
+e2 x, y + 6, "|_[ #{k} ]_|"
 end
 def e9
 @r = nil
@@ -87,7 +87,7 @@ exp = 2
 else
 exp = ts.last.value + 1
 end
-return unless q1.color == ts.last.color
+return unless q1.q3 == ts.last.q3
 end
 return unless q1.value == exp
 @r&.delete(q1)
