@@ -1,5 +1,4 @@
 require 'io/console'
-
 class C
 def initialize n
 @n = n
@@ -36,7 +35,6 @@ return false unless red ^ child.red
 child.value == value - 1
 end
 end
-
 def e2 x, y, t = ''
 print "\033[#{y};#{x}H#{t}"
 end
