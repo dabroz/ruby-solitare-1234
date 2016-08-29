@@ -31,7 +31,7 @@ end
 def e9
 @oed = false
 end
-def accept(child)
+def q2(child)
 return false unless red ^ child.red
 child.value == value - 1
 end
@@ -72,7 +72,7 @@ b7 = e3.last
 if b7 == nil
 return unless q1.value == 13
 else
-return if !b7.accept(seq.first)
+return if !b7.q2(seq.first)
 end
 seq.each do |card|
 e3 << card
