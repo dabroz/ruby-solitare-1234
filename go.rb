@@ -180,4 +180,3 @@ end
 
 @e3 = [[],[],[],[]]
 q7 while true
-#ddd
